@@ -29,6 +29,19 @@ const editarTarea = async (req, res) => {
     console.log(error)
   }
 }
-const eliminarTarea = async (req, res) => {}
+const eliminarTarea = async (req, res) => {
+  const { id } = req.params
+  const tarea = await Tareas.findById(id)
+  if (!tarea) {
+    const error = new Error("Tarea no encontrada")
+    return res.status(400).json({ msg: error.message })
+  }
+  try {
+    await tarea.deleteOne()
+    res.json({ msg: "Se elimino la tarea" })
+  } catch (error) {
+    console.log(error)
+  }
+}
 
-export { nuevaTarea, editarTarea }
+export { nuevaTarea, editarTarea, eliminarTarea }
