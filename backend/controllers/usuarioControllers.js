@@ -106,6 +106,9 @@ const nuevaContraseña = async (req, res) => {
     return res.status(404).json({ msg: error.message })
   }
 }
+const perfil = () => {
+  console.log("desde perfil")
+}
 
 export {
   registro,
@@ -114,4 +117,5 @@ export {
   olvidePassword,
   comprobarToken,
   nuevaContraseña,
+  perfil,
 }

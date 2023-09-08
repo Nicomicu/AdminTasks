@@ -6,7 +6,10 @@ import {
   olvidePassword,
   comprobarToken,
   nuevaContraseña,
+  perfil,
 } from "../controllers/usuarioControllers.js"
+import auth from "../middleware/auth.js"
+
 const router = express.Router()
 
 router.post("/", registro)
@@ -17,5 +20,7 @@ router
   .route("/olvide-password/:token")
   .get(comprobarToken)
   .post(nuevaContraseña)
+
+router.get("/perfil", auth, perfil)
 
 export default router
