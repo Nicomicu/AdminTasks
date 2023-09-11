@@ -12,6 +12,7 @@ const registro = async (req, res) => {
   try {
     const usuario = new Usuario(req.body)
     usuario.token = generarId()
+    res.json(usuario)
     await usuario.save()
     res.json({ msg: "Usuario creado correctamente, verifique su correo" })
   } catch (error) {
@@ -106,8 +107,10 @@ const nuevaContraseña = async (req, res) => {
     return res.status(404).json({ msg: error.message })
   }
 }
-const perfil = () => {
-  console.log("desde perfil")
+const perfil = (req, res) => {
+  const { usuario } = req
+
+  res.json(usuario)
 }
 
 export {
