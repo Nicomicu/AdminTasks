@@ -1,6 +1,14 @@
+"use client"
+import { useState } from "react"
 import Link from "next/link"
 
 const ForgotPassword = () => {
+  const [email, setEmail] = useState("")
+
+  const handleForm = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <>
       <h1 className="text-6xl font-bold mt-20">
@@ -11,12 +19,14 @@ const ForgotPassword = () => {
         </span>
       </h1>
       <div className="bg-[#393c71] w-[40rem] h-[20rem] mt-20 rounded-xl mx-auto shadow-xl mb-32">
-        <form className="p-10">
+        <form onSubmit={handleForm} className="p-10">
           <div className="flex-col items-center mt-[1rem]  ">
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Email:
             </label>
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Ingrese su correo"
               className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"

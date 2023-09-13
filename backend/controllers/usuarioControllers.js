@@ -1,6 +1,7 @@
 import Usuario from "../models/Usuario.js"
 import generarId from "../helpers/generarId.js"
 import generarJwt from "../helpers/generarJWT.js"
+import { emailRegistro } from "../helpers/email.js"
 
 const registro = async (req, res) => {
   const { email } = req.body
@@ -12,8 +13,13 @@ const registro = async (req, res) => {
   try {
     const usuario = new Usuario(req.body)
     usuario.token = generarId()
-    res.json(usuario)
     await usuario.save()
+
+    emailRegistro({
+      email: usuario.email,
+      nombre: usuario.nombre,
+      token: usuario.token,
+    })
     res.json({ msg: "Usuario creado correctamente, verifique su correo" })
   } catch (error) {
     console.log(error)
@@ -48,20 +54,18 @@ const confirmar = async (req, res) => {
   const { token } = req.params
   const usuarioConfirm = await Usuario.findOne({ token })
   if (!usuarioConfirm) {
-    const error = new Error("Cuenta no confirmada")
+    const error = new Error("Cuenta no valida")
     return res.status(403).json({ msg: error.message })
   }
   try {
     usuarioConfirm.confirmar = true
     usuarioConfirm.token = ""
     await usuarioConfirm.save()
-
-    res.json({ msg: "Cuenta confirmada" })
+    res.json({ msg: "Usuario Confirmado Correctamente" })
   } catch (error) {
     console.log(error)
   }
 }
-
 const olvidePassword = async (req, res) => {
   const { email } = req.body
 
