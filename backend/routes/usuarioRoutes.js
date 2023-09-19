@@ -5,7 +5,7 @@ import {
   confirmar,
   olvidePassword,
   comprobarToken,
-  nuevaContraseña,
+  newPassword,
   perfil,
 } from "../controllers/usuarioControllers.js"
 import auth from "../middleware/auth.js"
@@ -16,10 +16,7 @@ router.post("/", registro)
 router.post("/login", autenticar)
 router.get("/confirmar/:token", confirmar)
 router.post("/olvide-password", olvidePassword)
-router
-  .route("/olvide-password/:token")
-  .get(comprobarToken)
-  .post(nuevaContraseña)
+router.route("/olvide-password/:token").get(comprobarToken).post(newPassword)
 
 router.get("/perfil", auth, perfil)
 

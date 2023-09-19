@@ -1,7 +1,7 @@
 import Usuario from "../models/Usuario.js"
 import generarId from "../helpers/generarId.js"
 import generarJwt from "../helpers/generarJWT.js"
-import { emailRegistro } from "../helpers/email.js"
+import { emailRegistro, olvidoPassword } from "../helpers/email.js"
 
 const registro = async (req, res) => {
   const { email } = req.body
@@ -77,6 +77,12 @@ const olvidePassword = async (req, res) => {
   try {
     usuario.token = generarId()
     await usuario.save()
+
+    olvidoPassword({
+      email: usuario.email,
+      nombre: usuario.nombre,
+      token: usuario.token,
+    })
     res.json({ msg: "Te enviamos un correo para cambiar tu contraseña" })
   } catch (error) {
     console.log(error)
@@ -93,7 +99,7 @@ const comprobarToken = async (req, res) => {
   }
 }
 
-const nuevaContraseña = async (req, res) => {
+const newPassword = async (req, res) => {
   const { token } = req.params
   const { password } = req.body
   const usuario = await Usuario.findOne({ token })
@@ -123,6 +129,6 @@ export {
   confirmar,
   olvidePassword,
   comprobarToken,
-  nuevaContraseña,
+  newPassword,
   perfil,
 }

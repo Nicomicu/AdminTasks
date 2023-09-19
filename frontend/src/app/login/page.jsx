@@ -1,10 +1,24 @@
+"use client"
+import { useState } from "react"
 import Link from "next/link"
+import Error from "@/components/Error"
 
 const Login = () => {
+  const [nombre, setNombre] = useState("")
+  const [password, setPassword] = useState("")
+  const [alerta, setAlerta] = useState({})
 
+  const handleLogin = (e) => {
+    e.preventDefault()
 
+    if ([nombre, password].includes("")) {
+      setAlerta({ msg: "Por favor rellene los campos", error: true })
+      return
+    }
+  }
 
-  
+  const { msg } = alerta
+
   return (
     <>
       <h1 className="text-6xl font-bold mt-20">
@@ -14,9 +28,10 @@ const Login = () => {
           Un administrador de tareas
         </span>
       </h1>
+      {msg && <Error alerta={alerta} />}
 
       <div className="bg-[#393c71] w-[40rem] h-[30rem] mt-20 rounded-xl mx-auto shadow-xl">
-        <form className="p-10">
+        <form onSubmit={handleLogin} className="p-10">
           <div className="flex-col items-center mt-[3rem]">
             <label className="flex justify-start text-xl text-gray-400 p-1">
               Nombre:

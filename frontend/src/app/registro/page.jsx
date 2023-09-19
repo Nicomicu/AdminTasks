@@ -75,7 +75,7 @@ const Register = () => {
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              type="text"
+              type="email"
               placeholder="Ingrese su corrreo"
               className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"
             />
