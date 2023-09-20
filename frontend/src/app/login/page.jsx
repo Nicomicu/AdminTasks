@@ -1,19 +1,35 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Error from "@/components/Error"
+import useAuth from "@/hooks/useAuth"
 
 const Login = () => {
   const [nombre, setNombre] = useState("")
   const [password, setPassword] = useState("")
   const [alerta, setAlerta] = useState({})
 
-  const handleLogin = (e) => {
+  const router = useRouter()
+
+  const { setAuth } = useAuth()
+
+  const handleLogin = async (e) => {
     e.preventDefault()
 
     if ([nombre, password].includes("")) {
       setAlerta({ msg: "Por favor rellene los campos", error: true })
       return
+    }
+    try {
+      const { data } = await axios.post(
+        "http://localhost:4000/api/usuario/login",
+        { email, password }
+      )
+      localStorage.setItem("token", data.token)
+      setAuth(data)
+    } catch (error) {
+      setAlerta({ msg: error.response.data.msg, error: true })
     }
   }
 
@@ -52,6 +68,7 @@ const Login = () => {
           </div>
 
           <button
+            onClick={() => router.push("/adminTask")}
             type="submit"
             className="bg-[#1a2040] p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors text-gray-500">
             Iniciar sesion
