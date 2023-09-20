@@ -2,22 +2,22 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import axios from "axios"
 import Error from "@/components/Error"
 import useAuth from "@/hooks/useAuth"
 
 const Login = () => {
-  const [nombre, setNombre] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [alerta, setAlerta] = useState({})
 
   const router = useRouter()
-
   const { setAuth } = useAuth()
 
   const handleLogin = async (e) => {
     e.preventDefault()
 
-    if ([nombre, password].includes("")) {
+    if ([email, password].includes("")) {
       setAlerta({ msg: "Por favor rellene los campos", error: true })
       return
     }
@@ -28,8 +28,9 @@ const Login = () => {
       )
       localStorage.setItem("token", data.token)
       setAuth(data)
+      console.log(data)
     } catch (error) {
-      setAlerta({ msg: error.response.data.msg, error: true })
+      console.log(error)
     }
   }
 
@@ -50,17 +51,21 @@ const Login = () => {
         <form onSubmit={handleLogin} className="p-10">
           <div className="flex-col items-center mt-[3rem]">
             <label className="flex justify-start text-xl text-gray-400 p-1">
-              Nombre:
+              Email:
             </label>
             <input
-              type="text"
-              placeholder="Ingrese su Nombre"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Ingrese su correo"
               className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"
             />
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Password:
             </label>
             <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Ingrese su contraseña"
               className=" outline-none bg-[#1a2040] w-full p-4 rounded-lg text-gray-500 shadow-inner"
@@ -68,7 +73,7 @@ const Login = () => {
           </div>
 
           <button
-            onClick={() => router.push("/adminTask")}
+            // onClick={() => router.push("/adminTask")}
             type="submit"
             className="bg-[#1a2040] p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors text-gray-500">
             Iniciar sesion

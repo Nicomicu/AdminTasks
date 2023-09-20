@@ -1,5 +1,8 @@
 import "./globals.css"
 import { Inter } from "next/font/google"
+import { GlobalProvider } from "@/context/GlobalProvider"
+import { AuthProvider } from "@/context/AuthProvider"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
@@ -12,8 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="text-center bg-[#1a2040] bg-none">
         {/* <Sidebar /> */}
-
-        {children}
+        <GlobalProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </GlobalProvider>
       </body>
     </html>
   )

@@ -29,14 +29,14 @@ const registro = async (req, res) => {
 const autenticar = async (req, res) => {
   const { email, password } = req.body
   const usuario = await Usuario.findOne({ email })
-  if (!usuario) {
-    const error = new Error("Este usuario no existe")
+
+  if (!usuario || !usuario.confirmar) {
+    const error = new Error(
+      "Este usuario no existe o la cuenta no está confirmada"
+    )
     return res.status(404).json({ msg: error.message })
   }
-  if (!usuario.confirmar) {
-    const error = new Error("Tu cuenta no fue confirmada")
-    return res.status(403).json({ msg: error.message })
-  }
+
   if (await usuario.comprobarPassword(password)) {
     res.json({
       id: usuario._id,
@@ -45,11 +45,10 @@ const autenticar = async (req, res) => {
       token: generarJwt(usuario._id),
     })
   } else {
-    const error = new Error("Tu Contraseña es incorrecta")
+    const error = new Error("Tu contraseña es incorrecta")
     return res.status(403).json({ msg: error.message })
   }
 }
-
 const confirmar = async (req, res) => {
   const { token } = req.params
   const usuarioConfirm = await Usuario.findOne({ token })
