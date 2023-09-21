@@ -12,7 +12,7 @@ const Login = () => {
   const [alerta, setAlerta] = useState({})
 
   const router = useRouter()
-  const { setAuth } = useAuth()
+  const { setAuth, handleprofile } = useAuth()
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -28,7 +28,7 @@ const Login = () => {
       )
       localStorage.setItem("token", data.token)
       setAuth(data)
-      console.log(data)
+      router.push("/adminTask")
     } catch (error) {
       console.log(error)
     }
@@ -73,7 +73,7 @@ const Login = () => {
           </div>
 
           <button
-            // onClick={() => router.push("/adminTask")}
+            onClick={handleprofile}
             type="submit"
             className="bg-[#1a2040] p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors text-gray-500">
             Iniciar sesion
