@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
     handleprofile()
   }, [])
 
-  return (
+  return (  
     <AuthContext.Provider value={{ setAuth }}>{children}</AuthContext.Provider>
   )
 }
