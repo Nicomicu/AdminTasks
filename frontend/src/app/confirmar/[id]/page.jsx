@@ -4,9 +4,10 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import axios from "axios"
 import Error from "@/components/Error"
+import useGlobal from "@/hooks/useGlobal"
 
 const Confirm = () => {
-  const [alerta, setAlerta] = useState({})
+  const { alerta, setAlerta } = useGlobal()
   const [cuentaConfirmada, setCuentaConfirmada] = useState(false)
 
   const params = useParams()

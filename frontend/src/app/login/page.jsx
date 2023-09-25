@@ -5,14 +5,14 @@ import Link from "next/link"
 import axios from "axios"
 import Error from "@/components/Error"
 import useAuth from "@/hooks/useAuth"
+import useGlobal from "@/hooks/useGlobal"
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [alerta, setAlerta] = useState({})
+  const { email, password, alerta, setAlerta, setEmail, setPassword } =
+    useGlobal()
+  const { setAuth, handleprofile } = useAuth()
 
   const router = useRouter()
-  const { setAuth, handleprofile } = useAuth()
 
   const handleLogin = async (e) => {
     e.preventDefault()

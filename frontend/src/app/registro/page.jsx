@@ -1,15 +1,22 @@
 "use client"
 import Error from "@/components/Error"
+import useGlobal from "@/hooks/useGlobal"
 import axios from "axios"
 import Link from "next/link"
-import { useState } from "react"
 
 const Register = () => {
-  const [nombre, setNombre] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [repetir, setRepetir] = useState("")
-  const [alerta, setAlerta] = useState({})
+  const {
+    setAlerta,
+    setPassword,
+    setNombre,
+    setEmail,
+    nombre,
+    email,
+    password,
+    alerta,
+    repetir,
+    setRepetir,
+  } = useGlobal()
 
   const handleForm = async (e) => {
     e.preventDefault()
@@ -56,9 +63,9 @@ const Register = () => {
         </span>
       </h1>
       {msg && <Error alerta={alerta} />}
-      <div className="bg-[#393c71] w-[40rem] h-[45rem] mt-20 rounded-xl mx-auto shadow-xl mb-32">
+      <div className="bg-[#393c71] w-[640px] h-[720px] mt-20 rounded-xl mx-auto shadow-xl mb-32">
         <form onSubmit={handleForm} className="p-10">
-          <div className="flex-col items-center mt-[3rem] ">
+          <div className="flex-col items-center mt-[48px] ">
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Nombre:
             </label>

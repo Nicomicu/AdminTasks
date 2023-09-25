@@ -4,11 +4,12 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import Error from "@/components/Error"
 import axios from "axios"
+import useGlobal from "@/hooks/useGlobal"
 
 const newPassword = () => {
-  const [password, setPassword] = useState("")
+  const { password, setPassword, alerta, setAlerta } = useGlobal()
+
   const [tokenValido, setTokenValido] = useState(false)
-  const [alerta, setAlerta] = useState({})
   const [newPassword, setNewPassword] = useState(false)
 
   const params = useParams()

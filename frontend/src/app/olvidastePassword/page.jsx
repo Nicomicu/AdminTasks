@@ -1,12 +1,12 @@
 "use client"
-import { useState } from "react"
+
 import Link from "next/link"
 import Error from "@/components/Error"
 import axios from "axios"
+import useGlobal from "@/hooks/useGlobal"
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("")
-  const [alerta, setAlerta] = useState(false)
+  const { setEmail, setAlerta, email, alerta } = useGlobal()
 
   const handleForm = async (e) => {
     e.preventDefault()
