@@ -1,13 +1,13 @@
 import express from "express"
 import {
-  nuevaTarea,
-  editarTarea,
-  eliminarTarea,
+  newtask,
+  editask,
+  deletetask,
 } from "../controllers/tareasControllers.js"
 
 const router = express.Router()
 
-router.post("/nuevaTarea", nuevaTarea)
-router.route("/editandoTarea/:id").put(editarTarea).delete(eliminarTarea)
+router.post("/newtask", newtask)
+router.route("/editask/:id").put(editask).delete(deletetask)
 
 export default router

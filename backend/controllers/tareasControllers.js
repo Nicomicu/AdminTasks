@@ -1,6 +1,6 @@
 import Tareas from "../models/Tareas.js"
 
-const nuevaTarea = async (req, res) => {
+const newtask = async (req, res) => {
   const nuevaTarea = new Tareas(req.body)
   try {
     await nuevaTarea.save()
@@ -9,7 +9,7 @@ const nuevaTarea = async (req, res) => {
     console.log(error)
   }
 }
-const editarTarea = async (req, res) => {
+const editask = async (req, res) => {
   const { id } = req.params
   const tarea = await Tareas.findById(id)
   if (!tarea) {
@@ -29,7 +29,7 @@ const editarTarea = async (req, res) => {
     console.log(error)
   }
 }
-const eliminarTarea = async (req, res) => {
+const deletetask = async (req, res) => {
   const { id } = req.params
   const tarea = await Tareas.findById(id)
   if (!tarea) {
@@ -44,4 +44,4 @@ const eliminarTarea = async (req, res) => {
   }
 }
 
-export { nuevaTarea, editarTarea, eliminarTarea }
+export { newtask, editask, deletetask }
