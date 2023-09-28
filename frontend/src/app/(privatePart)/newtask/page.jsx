@@ -1,3 +1,5 @@
+import ListboxComponent from "./components/Listbox"
+
 const NewTaskPage = () => {
   return (
     <>
@@ -19,36 +21,38 @@ const NewTaskPage = () => {
             </label>
             <input
               type="text"
-              placeholder="Ingrese su Nombre"
+              placeholder="Titulo de la tarea"
               className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"
             />
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Categoria:
             </label>
             <input
-              type="email"
-              placeholder="Ingrese su corrreo"
+              type="text"
+              placeholder="ingrese una categoria"
               className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"
             />
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Prioridad:
             </label>
-
-            <select className="outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner focus:bg-[#1a2040] focus:outline-none">
-              <option value="baja">Baja</option>
-              <option value="media">Media</option>
-              <option value="alta">Alta</option>
-            </select>
-
+            <ListboxComponent />
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Fecha:
             </label>
             <input
               type="date"
-              placeholder="Ingrese nuevamente su password"
-              className=" outline-none bg-[#1a2040] w-full p-4 rounded-lg text-gray-500 shadow-inner"
+              className="outline-none bg-[#1a2040] w-full p-4 rounded-lg text-gray-500 shadow-inner "
             />
           </div>
+
+          <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
+            deescripcion:
+          </label>
+          <input
+            type="descripcion"
+            placeholder="Puede colocar alguna descripcion"
+            className=" outline-none bg-[#1a2040] w-full p-4 rounded-lg text-gray-500 shadow-inner"
+          />
 
           <button
             // onClick={}

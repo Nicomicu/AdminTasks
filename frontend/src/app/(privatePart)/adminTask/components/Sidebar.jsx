@@ -14,7 +14,9 @@ const Sidebar = () => {
         <li
           className="sm:block p-3 px-5 lg:mb-10 hover:bg-[#1a2040]
           lg:rounded-tl-full lg:rounded-bl-full sm:hover:rounded-bl-full sm:rounded-br-full lg:rounded-none mb-2 transition-colors">
-          <Link href="#" className="block p-3 hover:text-white justify-center">
+          <Link
+            href="/listTask"
+            className="block p-3 hover:text-white justify-center">
             <GoChecklist className="text-3xl" />
           </Link>
         </li>
