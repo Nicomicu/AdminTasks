@@ -1,14 +1,42 @@
 import Tareas from "../models/Tareas.js"
 
 const newtask = async (req, res) => {
-  const nuevaTarea = new Tareas(req.body)
+  const { categoria } = req.body
+
+  const validandoCategoria = ["Borrador", "Pendiente", "En proceso", "Hecho"]
+  if (!validandoCategoria.includes(categoria)) {
+    const error = new Error("Por favor coloque una categoria")
+    return res.status(400).json({ msg: error.message })
+  }
+  let collectionName
+  switch (categoria) {
+    case "Borrador":
+      collectionName = "borradores"
+      break
+    case "Pendiente":
+      collectionName = "pendientes"
+      break
+    case "En proceso":
+      collectionName = "en_proceso"
+      break
+    case "Hecho":
+      collectionName = "hechos"
+      break
+    default:
+      break
+  }
+
+  const newTask = new Tareas(req.body)
+
   try {
-    await nuevaTarea.save()
-    res.json({ msg: "Tarea creada correctamenete" })
+    await newTask.save()
+    res.json(categoria)
+    res.json({ msg: "Tarea creada correctamente" })
   } catch (error) {
     console.log(error)
   }
 }
+
 const editask = async (req, res) => {
   const { id } = req.params
   const tarea = await Tareas.findById(id)

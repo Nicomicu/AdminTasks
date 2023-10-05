@@ -1,1 +1,0 @@
-No tiene que haber globalcontext intentatar hacer un componente de formulario.
