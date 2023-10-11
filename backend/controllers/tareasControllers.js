@@ -30,8 +30,22 @@ const newtask = async (req, res) => {
 
   try {
     await newTask.save()
-    res.json(categoria)
     res.json({ msg: "Tarea creada correctamente" })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const gettask = async (req, res) => {
+  const { id } = req.params
+  const tarea = await Tareas.findById(id)
+
+  if (!tarea) {
+    const error = new Error("Esta tarea no existe")
+    return res.status(404).json({ msg: error.message })
+  }
+  try {
+    res.json(tarea)
   } catch (error) {
     console.log(error)
   }
@@ -72,4 +86,4 @@ const deletetask = async (req, res) => {
   }
 }
 
-export { newtask, editask, deletetask }
+export { newtask, gettask, editask, deletetask }

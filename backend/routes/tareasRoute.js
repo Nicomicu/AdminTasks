@@ -1,6 +1,7 @@
 import express from "express"
 import {
   newtask,
+  gettask,
   editask,
   deletetask,
 } from "../controllers/tareasControllers.js"
@@ -8,6 +9,6 @@ import {
 const router = express.Router()
 
 router.post("/newtask", newtask)
-router.route("/editask/:id").put(editask).delete(deletetask)
+router.route("/:id").get(gettask).put(editask).delete(deletetask)
 
 export default router
