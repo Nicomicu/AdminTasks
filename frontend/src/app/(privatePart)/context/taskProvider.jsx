@@ -20,21 +20,9 @@ const TaskProvider = ({ children }) => {
   //   nuevaTarea.id = tareas.id
   //   setTareas([...tareas, nuevaTarea])
   // }
-  const submitTask = async (tarea) => {
-    try {
-      const { data } = await axios.post(
-        "http://localhost:4000/api/tareas/newtask",
-        tarea
-      )
-
-      setTareas([...tareas, data])
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
-    <TaskContext.Provider value={{ tareas, alerta, getTask, submitTask }}>
+    <TaskContext.Provider value={{ tareas, alerta, getTask, setTareas }}>
       {children}
     </TaskContext.Provider>
   )
