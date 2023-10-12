@@ -30,7 +30,7 @@ const newtask = async (req, res) => {
 
   try {
     await newTask.save()
-    res.json({ msg: "Tarea creada correctamente" })
+    res.json(newTask)
   } catch (error) {
     console.log(error)
   }

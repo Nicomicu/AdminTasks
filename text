@@ -1,0 +1,12 @@
+- no puedo hacer la manera optima que  es setTareas([tareas,data]) ya que el state esta definido
+como objeto.
+
+y en el form tambiene esta definido como objeto ademas szi hago que el state sea arreglo tampoco funciona porquye esta definido
+como objeto. 
+
+1 una de mis soluciones es cambiar el model de tarera y hacer tarea[
+
+nombre{}
+categoria {} 
+etc
+]

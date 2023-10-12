@@ -25,7 +25,7 @@ const TaskManagementpage = () => {
         </div>
       </>
       ) : (
-      <p className="text-5xl bg-gray-400 text-center font-bold">
+      <p className="text-5xl text-gray-400 text-center font-bold">
         No hay tareas aún
       </p>
       {/* )}

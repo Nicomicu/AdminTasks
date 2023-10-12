@@ -5,25 +5,29 @@ import { useState, createContext } from "react"
 const TaskContext = createContext()
 
 const TaskProvider = ({ children }) => {
-  const [tareas, setTareas] = useState({})
+  const [tareas, setTareas] = useState([])
   const [alerta, setAlerta] = useState(false)
 
-  const submitTask = async (tareas) => {
+  console.log(tareas)
+  const getTask = async (id) => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:4000/api/tareas/newtask",
-        tareas
-      )
-      setTareas(data)
+      const { data } = await axios(`http://localhost:4000/api/tareas/${id}`)
     } catch (error) {
       console.log(error)
     }
   }
-
-  const getTask = async (id) => {
+  // const guardarTarea = () => {
+  //   nuevaTarea.id = tareas.id
+  //   setTareas([...tareas, nuevaTarea])
+  // }
+  const submitTask = async (tarea) => {
     try {
-      const { data } = await axios(`http://localhost:4000/api/tareas/${id}`)
-      console.log(data)
+      const { data } = await axios.post(
+        "http://localhost:4000/api/tareas/newtask",
+        tarea
+      )
+
+      setTareas([...tareas, data])
     } catch (error) {
       console.log(error)
     }

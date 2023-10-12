@@ -11,7 +11,7 @@ const NewTaskForm = () => {
   const [fecha, setFecha] = useState(new Date())
   const [descripcion, setDescripcion] = useState("")
 
-  const { tareas, alerta, submitTask, getTask } = useTask()
+  const { tareas, alerta, submitTask } = useTask()
 
   const handleFormTask = async (e) => {
     e.preventDefault()
@@ -23,8 +23,20 @@ const NewTaskForm = () => {
 
       return
     }
-
+    const nuevaTarea = {
+      nombre,
+      categoria,
+      prioridad,
+      fecha,
+      descripcion,
+    }
     await submitTask({ nombre, categoria, prioridad, fecha, descripcion })
+
+    setNombre("")
+    setCategoria("")
+    setPrioridad("")
+    setFecha("")
+    setDescripcion("")
   }
   const { msg } = alerta
 
