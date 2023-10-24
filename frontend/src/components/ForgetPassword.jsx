@@ -1,10 +1,9 @@
 "use client"
 import Link from "next/link"
 import Error from "@/components/Error"
-import axios from "axios"
+import forgetPasswordRequest from "@/services/forgetPasswordRequest"
 
 const ForgetPassword = () => {
-  const [nombre, setNombre] = useState("")
   const [email, setEmail] = useState("")
   const [alerta, setAlerta] = useState(false)
 
@@ -14,19 +13,11 @@ const ForgetPassword = () => {
       setAlerta({ msg: "Campo Obligatorio", error: true })
       return
     }
-    try {
-      const { data } = await axios.post(
-        "http://localhost:4000/api/usuario/olvide-password",
-        {
-          email,
-        }
-      )
-      setAlerta({ msg: data.msg, error: false })
-    } catch (error) {
-      console.log(error)
-    }
+    const data = await forgetPasswordRequest(email)
+    setAlerta({ msg: data.msg, error: false })
   }
   const { msg } = alerta
+
   return (
     <>
       <h1 className="text-6xl font-bold mt-20">

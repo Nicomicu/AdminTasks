@@ -3,7 +3,8 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import Error from "@/components/Error"
-import axios from "axios"
+import newPasswordRequest from "@/services/newPasswordRequest"
+import comprobarTokenRequest from "@/services/comprobarTokenRequest"
 
 const NewPassword = () => {
   const [password, setPassword] = useState("")
@@ -18,9 +19,7 @@ const NewPassword = () => {
   useEffect(() => {
     const comprobarToken = async () => {
       try {
-        await axios(
-          `http://localhost:4000/api/usuario/olvide-password/${token}`
-        )
+        const comprobarToken = await comprobarTokenRequest(token)
         setTokenValido(true)
       } catch (error) {
         console.log(error)
@@ -39,14 +38,12 @@ const NewPassword = () => {
       return
     }
     try {
-      const { data } = await axios.post(
-        `http://localhost:4000/api/usuario/olvide-password/${token}`,
-        { password }
-      )
+      const newPassword = await newPasswordRequest(token, password)
       setAlerta({
-        msg: data.msg,
+        msg: newPassword.msg,
         error: false,
       })
+
       setNewPassword(true)
     } catch (error) {
       setAlerta({ msg: error.response.data.msg, error: true })

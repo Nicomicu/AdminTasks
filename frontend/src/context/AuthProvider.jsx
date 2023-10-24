@@ -11,21 +11,32 @@ const AuthProvider = ({ children }) => {
   const router = useRouter()
 
   useEffect(() => {
-    const handleprofile = async () => {
-      const token = localStorage.getItem("token")
-      try {
-        const profileData = await authService.getProfile(token)
-        setAuth(profileData)
-        router.push("/adminTask")
-      } catch (error) {
-        console.log(error)
+    const token = localStorage.getItem("token")
+
+    if (token) {
+      const handleProfile = async () => {
+        try {
+          const profileData = await authService.getProfile(token)
+          setAuth(profileData)
+          router.push("/adminTask")
+        } catch (error) {
+          console.log("error auth", error)
+        }
       }
+
+      handleProfile()
+    } else {
+      router.push("/login")
     }
-    handleprofile()
   }, [])
 
-  return (  
-    <AuthContext.Provider value={{ setAuth }}>{children}</AuthContext.Provider>
+  const cerrarAuth = () => {
+    setAuth({})
+  }
+  return (
+    <AuthContext.Provider value={{ setAuth, cerrarAuth }}>
+      {children}
+    </AuthContext.Provider>
   )
 }
 

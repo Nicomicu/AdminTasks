@@ -2,6 +2,7 @@ import Tareas from "../models/Tareas.js"
 
 const newtask = async (req, res) => {
   const { categoria } = req.body
+  const newTask = new Tareas(req.body)
 
   const validandoCategoria = ["Borrador", "Pendiente", "En proceso", "Hecho"]
   if (!validandoCategoria.includes(categoria)) {
@@ -25,9 +26,6 @@ const newtask = async (req, res) => {
     default:
       break
   }
-
-  const newTask = new Tareas(req.body)
-
   try {
     await newTask.save()
     res.json(newTask)
@@ -37,18 +35,22 @@ const newtask = async (req, res) => {
 }
 
 const gettask = async (req, res) => {
-  const { id } = req.params
-  const tarea = await Tareas.findById(id)
-
-  if (!tarea) {
-    const error = new Error("Esta tarea no existe")
-    return res.status(404).json({ msg: error.message })
-  }
   try {
-    res.json(tarea)
+    const tareas = await Tareas.find()
+    res.json(tareas)
   } catch (error) {
     console.log(error)
   }
+
+  // try {
+  //   if (tareas.length === 0) {
+  //     return res.status(200).json({ msg: "No hay tareas disponibles" })
+  //   }
+
+  // } catch (error) {
+  //   console.error(error)
+  //   res.status(500).json({ msg: "Error al obtener las tareas" })
+  // }
 }
 
 const editask = async (req, res) => {

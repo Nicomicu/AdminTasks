@@ -1,6 +1,6 @@
-import Confirm from "@/components/Confirm"
+import ConfirmComponent from "@/components/ConfirmComponent"
 
 const Confirm = () => {
-  return <Confirm />
+  return <ConfirmComponent />
 }
 export default Confirm

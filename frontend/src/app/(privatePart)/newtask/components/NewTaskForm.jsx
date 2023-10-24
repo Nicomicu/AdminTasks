@@ -2,10 +2,8 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
 import Error from "@/components/Error"
-import axios from "axios"
 import useTask from "../../hook/useTask"
-import Tareas from "../../components/Tareas"
-import newTaskrequest from "../services/newTaskrequest"
+import newTaskRequest from "../services/newTaskRequest"
 
 const NewTaskForm = () => {
   const [nombre, setNombre] = useState("")
@@ -27,13 +25,14 @@ const NewTaskForm = () => {
       return
     }
 
-    const newTask = await newTaskrequest({
+    const newTask = await newTaskRequest({
       nombre,
       categoria,
       prioridad,
       fecha,
       descripcion,
     })
+
     setTareas([...tareas, newTask])
 
     setNombre("")
@@ -42,6 +41,7 @@ const NewTaskForm = () => {
     setFecha("")
     setDescripcion("")
   }
+
   const { msg } = alerta
 
   return (

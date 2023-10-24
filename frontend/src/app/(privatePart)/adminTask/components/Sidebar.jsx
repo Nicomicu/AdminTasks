@@ -1,9 +1,26 @@
+"use client"
+
 import { GoChecklist } from "react-icons/go"
 import { IoAddCircleOutline } from "react-icons/io5"
 import { LiaSignInAltSolid } from "react-icons/lia"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import useAuth from "@/hooks/useAuth"
+import useTask from "../../hook/useTask"
 
 const Sidebar = () => {
+  const { cerrarAuth } = useAuth()
+  const { cerrarSesion } = useTask()
+  const router = useRouter()
+
+  const handleCerrarSesion = () => {
+    cerrarAuth()
+    cerrarSesion()
+    localStorage.removeItem("token")
+
+    router.push("/login")
+  }
+
   return (
     <div
       className="fixed bg-[#7c44f3] lg:w-[130px] rounded-3xl lg:mx-2 lg:top-0 mb-2 mt-2 lg:justify-between
@@ -32,13 +49,12 @@ const Sidebar = () => {
         </li>
 
         <div className="lg:bottom-0">
-          <li
+          <button
+            onClick={handleCerrarSesion}
             className="sm:block p-3 lg:hover:pr-20 hover:bg-[#1a2040]
        lg:rounded-tl-full rounded-bl-full sm:hover:rounded-bl-full sm:rounded-br-full lg:rounded-none mb-2 ">
-            <Link href="#" className="block p-3 hover:text-white">
-              <LiaSignInAltSolid className="text-3xl" />
-            </Link>
-          </li>
+            <LiaSignInAltSolid className="text-3xl" />
+          </button>
         </div>
       </ul>
     </div>

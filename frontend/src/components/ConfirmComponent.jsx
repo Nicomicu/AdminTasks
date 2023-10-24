@@ -4,10 +4,8 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import axios from "axios"
 import Error from "@/components/Error"
-import useGlobal from "@/hooks/useGlobal"
-
-const Confirm = () => {
-  const { alerta, setAlerta } = useGlobal()
+const ConfirmComponent = () => {
+  const [alerta, setAlerta] = useState(false)
   const [cuentaConfirmada, setCuentaConfirmada] = useState(false)
 
   const params = useParams()
@@ -52,4 +50,4 @@ const Confirm = () => {
   )
 }
 
-export default Confirm
+export default ConfirmComponent

@@ -119,6 +119,10 @@ const newPassword = async (req, res) => {
 const perfil = (req, res) => {
   const { usuario } = req
 
+  // if (!usuario) {
+  //   return res.redirect("/login")
+  // }
+
   res.json(usuario)
 }
 

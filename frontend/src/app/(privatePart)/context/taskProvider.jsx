@@ -1,6 +1,6 @@
 "use client"
-import axios from "axios"
-import { useState, createContext } from "react"
+import { useState, useEffect, createContext } from "react"
+import getTaskRequest from "../services/getTaskRequest"
 
 const TaskContext = createContext()
 
@@ -8,21 +8,42 @@ const TaskProvider = ({ children }) => {
   const [tareas, setTareas] = useState([])
   const [alerta, setAlerta] = useState(false)
 
-  console.log(tareas)
-  const getTask = async (id) => {
-    try {
-      const { data } = await axios(`http://localhost:4000/api/tareas/${id}`)
-    } catch (error) {
-      console.log(error)
+  // useEffect(() => {
+  //   const getTask = async () => {
+  //     try {
+  //       if (id) {
+  //         const { data } = await axios(`http://localhost:4000/api/tareas/${id}`)
+  //         setTareas(data)
+  //       } else {
+  //         console.log("ID no definido")
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   getTask()
+  // }, [])
+
+  useEffect(() => {
+    const keepTasks = async () => {
+      try {
+        const data = await getTaskRequest()
+        setTareas(data)
+      } catch (error) {
+        console.log(error)
+      }
     }
+
+    keepTasks()
+  }, [])
+
+  const cerrarSesion = () => {
+    setTareas([])
+    setAlerta(false)
   }
-  // const guardarTarea = () => {
-  //   nuevaTarea.id = tareas.id
-  //   setTareas([...tareas, nuevaTarea])
-  // }
 
   return (
-    <TaskContext.Provider value={{ tareas, alerta, getTask, setTareas }}>
+    <TaskContext.Provider value={{ tareas, alerta, setTareas, cerrarSesion }}>
       {children}
     </TaskContext.Provider>
   )

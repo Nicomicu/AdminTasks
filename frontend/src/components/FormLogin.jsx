@@ -2,9 +2,9 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import axios from "axios"
 import Error from "@/components/Error"
 import useAuth from "@/hooks/useAuth"
+import loginRequest from "@/services/loginRequest"
 
 const FormLogin = () => {
   const [email, setEmail] = useState("")
@@ -22,17 +22,8 @@ const FormLogin = () => {
       setAlerta({ msg: "Por favor rellene los campos", error: true })
       return
     }
-    try {
-      const { data } = await axios.post(
-        "http://localhost:4000/api/usuario/login",
-        { email, password }
-      )
-      localStorage.setItem("token", data.token)
-      setAuth(data)
-      router.push("/adminTask")
-    } catch (error) {
-      console.log(error)
-    }
+    await loginRequest(email, password, setAuth)
+    router.push("/adminTask")
   }
 
   const { msg } = alerta
