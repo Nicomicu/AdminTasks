@@ -16,8 +16,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="text-center bg-[#1a2040] bg-none">
-        {/* <Sidebar /> */}
-
         <AuthProvider>
           <TaskProvider>{children}</TaskProvider>
         </AuthProvider>

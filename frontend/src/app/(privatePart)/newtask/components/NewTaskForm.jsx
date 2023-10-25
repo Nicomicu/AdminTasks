@@ -56,7 +56,7 @@ const NewTaskForm = () => {
 
       {msg && <Error alerta={alerta} />}
 
-      <div className="bg-[#393c71] w-[70rem] mt-20 rounded-xl mx-auto shadow-xl mb-32">
+      <div className="bg-[#393c71] w-[40rem] mt-20 rounded-xl mx-auto shadow-xl mb-32">
         <form className="p-10" onSubmit={handleFormTask}>
           <div className="flex-col items-center mt-[48px]">
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
@@ -122,7 +122,7 @@ const NewTaskForm = () => {
 
           <button
             type="submit"
-            className="bg-[#1a2040] p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors text-gray-500">
+            className="bg-[#1a2040] p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors hover:bg-[#1a2038] text-gray-500">
             Añadir Tarea
           </button>
         </form>

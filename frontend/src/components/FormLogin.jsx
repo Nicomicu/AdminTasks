@@ -37,6 +37,7 @@ const FormLogin = () => {
           Un administrador de tareas
         </span>
       </h1>
+
       {msg && <Error alerta={alerta} />}
 
       <div className="bg-[#393c71] w-[40rem] h-[30rem] mt-20 rounded-xl mx-auto shadow-xl">

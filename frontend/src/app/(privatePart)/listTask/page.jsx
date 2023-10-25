@@ -1,8 +1,9 @@
-import Tarea from "../components/Tarea"
+"use client"
 import useTask from "../hook/useTask"
 
-const TaskManagementpage = ({ tareas }) => {
-  console.log(tareas)
+const TaskManagementpage = () => {
+  const { tareas } = useTask()
+
   return (
     <div>
       {tareas && tareas.length > 0 ? (
@@ -25,10 +26,9 @@ const TaskManagementpage = ({ tareas }) => {
               <h2>Hecho</h2>
             </div>
           </div>
-          <p>¡Sí hay tareas!</p>
         </>
       ) : (
-        <p className="text-5xl text-gray-400 text-center font-bold">
+        <p className="text-5xl text-gray-600 text-center font-bold mt-32 uppercase">
           No hay tareas aún
         </p>
       )}
