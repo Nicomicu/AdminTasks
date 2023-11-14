@@ -4,7 +4,7 @@ const newtask = async (req, res) => {
   const { categoria } = req.body
   const newTask = new Tareas(req.body)
 
-  const validandoCategoria = ["Borrador", "Pendiente", "En proceso", "Hecho"]
+  const validandoCategoria = [, "Pendiente", "En proceso", "Hecho"]
   if (!validandoCategoria.includes(categoria)) {
     const error = new Error("Por favor coloque una categoria")
     return res.status(400).json({ msg: error.message })
@@ -63,7 +63,7 @@ const editask = async (req, res) => {
   tarea.nombre = req.body.nombre || tarea.nombre
   tarea.descripcion = req.body.descripcion || tarea.descripcion
   tarea.categoria = req.body.categoria || tarea.categoria
-  tarea.prioridad = req.body.prioridad || tarea.prioridad
+  // tarea.prioridades = req.body.prioridades || tarea.prioridades
   tarea.fechaEntrega = req.body.fechaEntrega || tarea.fechaEntrega
 
   try {

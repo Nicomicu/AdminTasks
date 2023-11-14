@@ -11,14 +11,14 @@ const TareasSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      enum: ["Borrador", "Pendiente", "En proceso", "Hecho"],
+      enum: ["Pendiente", "En proceso", "Hecho"],
     },
-    prioridad: {
-      type: String,
-      required: true,
-      trim: true,
-      enum: ["Baja", "Media", "Alta"],
-    },
+    // prioridades: {
+    //   type: String,
+    //   required: true,
+    //   trim: true,
+    //   enum: ["Baja", "Media", "Alta"],
+    // },
     fecha: {
       type: Date,
       required: true,

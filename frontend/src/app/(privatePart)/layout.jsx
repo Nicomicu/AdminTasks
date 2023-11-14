@@ -1,9 +1,9 @@
-import Sidebar from "./adminTask/components/Sidebar"
+import ListTaskColumnPage from "./listTask/components/ListTaskColumn"
 
 const SidebarLayout = ({ children }) => {
   return (
     <div>
-      <Sidebar />
+      <ListTaskColumnPage />
       {children}
     </div>
   )

@@ -8,22 +8,6 @@ const TaskProvider = ({ children }) => {
   const [tareas, setTareas] = useState([])
   const [alerta, setAlerta] = useState(false)
 
-  // useEffect(() => {
-  //   const getTask = async () => {
-  //     try {
-  //       if (id) {
-  //         const { data } = await axios(`http://localhost:4000/api/tareas/${id}`)
-  //         setTareas(data)
-  //       } else {
-  //         console.log("ID no definido")
-  //       }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getTask()
-  // }, [])
-
   useEffect(() => {
     const keepTasks = async () => {
       try {
