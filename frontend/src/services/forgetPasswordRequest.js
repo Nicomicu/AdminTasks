@@ -1,10 +1,6 @@
-"use client"
-import { useState } from "react"
 import axios from "axios"
 
-const forgetPasswordRequest = async () => {
-  const [alerta, setAlerta] = useState(false)
-
+const forgetPasswordRequest = async (email) => {
   try {
     const { data } = await axios.post(
       "http://localhost:4000/api/usuario/olvide-password",
@@ -12,9 +8,10 @@ const forgetPasswordRequest = async () => {
         email,
       }
     )
+
     return data
   } catch (error) {
-    setAlerta({ msg: error.message, error: true })
+    return { msg: error.message, error: true }
   }
 }
 

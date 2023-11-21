@@ -1,12 +1,5 @@
-import ListTaskColumnPage from "./listTask/components/ListTaskColumn"
-
 const SidebarLayout = ({ children }) => {
-  return (
-    <div>
-      <ListTaskColumnPage />
-      {children}
-    </div>
-  )
+  return <div>{children}</div>
 }
 
 export default SidebarLayout

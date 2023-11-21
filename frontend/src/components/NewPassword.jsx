@@ -8,10 +8,10 @@ import comprobarTokenRequest from "@/services/comprobarTokenRequest"
 
 const NewPassword = () => {
   const [password, setPassword] = useState("")
-  const [alerta, setAlerta] = useState(false)
+  const [alerta, setAlerta] = useState({})
 
   const [tokenValido, setTokenValido] = useState(false)
-  const [newPassword, setNewPassword] = useState(false)
+  const [newPasswordModificado, setNewPasswordModificado] = useState(false)
 
   const params = useParams()
   const { token } = params
@@ -19,10 +19,13 @@ const NewPassword = () => {
   useEffect(() => {
     const comprobarToken = async () => {
       try {
-        const comprobarToken = await comprobarTokenRequest(token)
+        const password = await comprobarTokenRequest(token)
         setTokenValido(true)
       } catch (error) {
-        console.log(error)
+        setAlerta({
+          msg: error.response.data.msg,
+          error: true,
+        })
       }
     }
     comprobarToken()
@@ -30,32 +33,36 @@ const NewPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (password < 6) {
+    if (password.length < 6) {
       setAlerta({
-        msg: "Minimo 6 caracteres",
+        msg: "Mínimo 6 caracteres",
         error: true,
       })
       return
     }
     try {
-      const newPassword = await newPasswordRequest(token, password)
+      await newPasswordRequest(token, password)
       setAlerta({
-        msg: newPassword.msg,
+        msg: "Contraseña actualizada con éxito",
         error: false,
       })
-
-      setNewPassword(true)
+      setNewPasswordModificado(true)
     } catch (error) {
-      setAlerta({ msg: error.response.data.msg, error: true })
+      console.error("Error al actualizar la contraseña:", error)
+      setAlerta({
+        msg: error.response ? error.response.data.msg : "Error en la solicitud",
+        error: true,
+      })
     }
   }
+
   const { msg } = alerta
 
   return (
     <>
       <h1 className="text-6xl font-bold mt-20">
         Cambia tu cuenta para
-        <span className="block text-[#7c44f3] bg-gradient-to-r from-violet-300 to-violet-600 text-transparent bg-clip-text">
+        <span className="block bg-[#3e7ee8] text-transparent bg-clip-text">
           administrar tus tareas
         </span>
       </h1>
@@ -63,7 +70,7 @@ const NewPassword = () => {
       {msg && <Error alerta={alerta} />}
 
       {tokenValido && (
-        <div className="bg-[#393c71] w-[40rem] h-[17rem] mt-20 rounded-xl mx-auto shadow-xl mb-32">
+        <div className="bg-white w-[40rem] h-[17rem] mt-20 rounded-xl mx-auto shadow-xl mb-32">
           <form onSubmit={handleSubmit} className="p-5">
             <div className="flex-col items-center mt-[1rem]">
               <label className="flex justify-start text-xl text-gray-400 p-1">
@@ -74,20 +81,20 @@ const NewPassword = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Ingrese su nuevo password"
-                className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"
+                className=" outline-none bg-gray-100 p-4 rounded-lg text-gray-500 w-full shadow-md"
               />
             </div>
 
             <button
               type="submit"
-              className="bg-[#1a2040] p-4 rounded-xl w-full mt-10 uppercase shadow-xl hover:transition-colors text-gray-500">
+              className="bg-gray-100 hover:bg-gray-200 p-4 rounded-xl w-full mt-10 uppercase shadow-xl hover:transition-colors text-gray-500">
               Actualizar Contraseña
             </button>
           </form>
         </div>
       )}
 
-      {newPassword && (
+      {newPasswordModificado && (
         <Link
           className="block text-center mt-5 text-slate-500 uppercase text-md"
           href="/login">

@@ -65,33 +65,33 @@ const confirmar = async (req, res) => {
     console.log(error)
   }
 }
-const olvidePassword = async (req, res) => {
+const olvidastePassword = async (req, res) => {
   const { email } = req.body
 
-  const usuario = await Usuario.findOne({ email })
-  if (!usuario) {
-    const error = new Error("El usuario no existe")
-    return res.status(404).json({ msg: error.message })
-  }
   try {
-    usuario.token = generarId()
-    await usuario.save()
+    const usuario = await Usuario.findOne({ email })
 
-    olvidoPassword({
+    if (!usuario) {
+      throw new Error("El usuario no existe")
+    }
+
+    await olvidoPassword({
       email: usuario.email,
       nombre: usuario.nombre,
       token: usuario.token,
     })
+
     res.json({ msg: "Te enviamos un correo para cambiar tu contraseña" })
   } catch (error) {
-    console.log(error)
+    console.log("Error al procesar la solicitud:", error)
+    res.status(500).json({ msg: "Error al procesar la solicitud" })
   }
 }
 const comprobarToken = async (req, res) => {
   const { token } = req.params
   const tokenValido = await Usuario.findOne({ token })
   if (tokenValido) {
-    res.json({ msg: "Usuario Valido" })
+    res.json({ msg: "Usuario Validado" })
   } else {
     const error = new Error("El usuario no es valido")
     return res.status(404).json({ msg: error.message })
@@ -130,7 +130,7 @@ export {
   registro,
   autenticar,
   confirmar,
-  olvidePassword,
+  olvidastePassword,
   comprobarToken,
   newPassword,
   perfil,

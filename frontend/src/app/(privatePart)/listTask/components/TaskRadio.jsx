@@ -22,46 +22,42 @@ const Categorias = [
 
 const TaskRadio = ({ categoria, setCategoria }) => {
   return (
-    <RadioGroup
-      value={categoria}
-      onChange={(e) => {
-        setCategoria(e)
-      }}>
+    <RadioGroup value={categoria} onChange={(e) => setCategoria(e)}>
       <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
 
       <div className="mt-5">
-        {Categorias.map((categoria) => (
-          <div key={categoria.id} className="mt-2">
-            <RadioGroup.Option
-              value={categoria.id}
-              className={({ checked }) => `
-                relative flex border rounded-lg bg-white shadow-lg p-4
-                ${checked ? "bg-[#3e7ee8] text-white" : ""}
-              `}>
+        {Categorias.map((categoriaItem) => (
+          <div key={categoriaItem.id} className="mt-2">
+            <RadioGroup.Option value={categoriaItem.id}>
               {({ checked }) => (
-                <div className="flex w-full items-center justify-between">
-                  <div className=" flex flex-col">
-                    <RadioGroup.Label
-                      as="span"
-                      className={`block text-xl font-medium text-gray-600 ${
-                        checked ? "text-white text-2xl" : ""
-                      }`}>
-                      {categoria.name}
-                    </RadioGroup.Label>
+                <div
+                  className={`relative flex border rounded-lg shadow-lg p-4 ${
+                    checked ? "bg-[#3e7ee8] text-white" : ""
+                  }`}>
+                  <div className="flex w-full items-center justify-between">
+                    <div className="flex flex-col">
+                      <RadioGroup.Label
+                        as="span"
+                        className={`block text-xl font-medium text-gray-600 ${
+                          checked ? "text-white text-2xl" : ""
+                        }`}>
+                        {categoriaItem.name}
+                      </RadioGroup.Label>
 
-                    <RadioGroup.Description
-                      as="span"
-                      className={`block text-sm mt-1 text-gray-600 ${
-                        checked ? " text-white" : ""
-                      }`}>
-                      {categoria.description}
-                    </RadioGroup.Description>
-                  </div>
-                  {checked && (
-                    <div className="shrink-0 text-white">
-                      <GoCheckCircleFill className="h-6 w-6" />
+                      <RadioGroup.Description
+                        as="span"
+                        className={`block text-sm mt-1 text-gray-600 ${
+                          checked ? " text-white" : ""
+                        }`}>
+                        {categoriaItem.description}
+                      </RadioGroup.Description>
                     </div>
-                  )}
+                    {checked && (
+                      <div className="shrink-0 text-white">
+                        <GoCheckCircleFill className="h-6 w-6" />
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </RadioGroup.Option>
@@ -71,4 +67,5 @@ const TaskRadio = ({ categoria, setCategoria }) => {
     </RadioGroup>
   )
 }
+
 export default TaskRadio

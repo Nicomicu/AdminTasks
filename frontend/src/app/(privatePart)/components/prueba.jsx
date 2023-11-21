@@ -292,3 +292,7 @@
 // }
 
 // export default NewTaskForm
+
+{
+  columns.filter((columnId) => columnId)
+}

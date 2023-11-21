@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import axios from "axios"
+import confirmRequest from "@/services/confirmRequest"
 import Error from "@/components/Error"
+
 const ConfirmComponent = () => {
-  const [alerta, setAlerta] = useState(false)
+  const [alerta, setAlerta] = useState({})
   const [cuentaConfirmada, setCuentaConfirmada] = useState(false)
 
   const params = useParams()
@@ -14,12 +15,14 @@ const ConfirmComponent = () => {
   useEffect(() => {
     const confirmAccount = async () => {
       try {
-        const url = `http://localhost:4000/api/usuario/confirmar/${id}`
-        const { data } = await axios(url)
+        const data = await confirmRequest(id)
         setCuentaConfirmada(true)
         setAlerta({ msg: data.msg, error: false })
       } catch (error) {
-        setAlerta({ msg: error.response.data.msg, error: true })
+        setAlerta({
+          msg: error.response ? error.response.data.msg : "Error en confirmar",
+          error: true,
+        })
       }
     }
     confirmAccount()
@@ -31,7 +34,7 @@ const ConfirmComponent = () => {
     <>
       <h1 className="text-6xl font-bold mt-20">
         Confirma tu cuenta para
-        <span className="block text-[#7c44f3] bg-gradient-to-r from-violet-300 to-violet-600 text-transparent bg-clip-text">
+        <span className="block bg-[#3e7ee8] text-transparent bg-clip-text">
           administrar tus tareas
         </span>
       </h1>
@@ -41,7 +44,7 @@ const ConfirmComponent = () => {
       {cuentaConfirmada && (
         <Link
           href="/login"
-          className="block text-center my-3 text-slate-300 uppercase text-md
+          className="block text-center my-3 text-gray-500 uppercase text-md
       text-indigo">
           Inicia sesión aqui si tu cuenta ya fue confirmada
         </Link>

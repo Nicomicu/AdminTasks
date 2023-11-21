@@ -18,15 +18,13 @@ const AuthProvider = ({ children }) => {
         try {
           const profileData = await authService.getProfile(token)
           setAuth(profileData)
-          router.push("/adminTask")
+          router.push("/listTask")
         } catch (error) {
           console.log("error auth", error)
         }
       }
 
       handleProfile()
-    } else {
-      router.push("/login")
     }
   }, [])
 

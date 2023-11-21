@@ -1,8 +1,10 @@
 import axios from "axios"
 
-const comprobarTokenRequest = async () => {
+const comprobarTokenRequest = async (token) => {
   try {
-    await axios(`http://localhost:4000/api/usuario/olvide-password`)
+    await axios.get(
+      `http://localhost:4000/api/usuario/olvide-password/${token}`
+    )
   } catch (error) {
     console.log(error)
   }

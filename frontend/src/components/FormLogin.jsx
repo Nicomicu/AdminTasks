@@ -23,7 +23,7 @@ const FormLogin = () => {
       return
     }
     await loginRequest(email, password, setAuth)
-    router.push("/adminTask")
+    router.push("/listTask")
   }
 
   const { msg } = alerta
@@ -33,14 +33,14 @@ const FormLogin = () => {
       <h1 className="text-6xl font-bold mt-20">
         Bienvenido a AdminTask
         {""}
-        <span className="block text-[#7c44f3] bg-gradient-to-r from-violet-300 to-violet-600 text-transparent bg-clip-text">
+        <span className="block bg-[#3e7ee8] text-transparent bg-clip-text">
           Un administrador de tareas
         </span>
       </h1>
 
       {msg && <Error alerta={alerta} />}
 
-      <div className="bg-[#393c71] w-[40rem] h-[30rem] mt-20 rounded-xl mx-auto shadow-xl">
+      <div className="bg-white w-[40rem] h-[30rem] mt-20 rounded-xl mx-auto shadow-xl">
         <form onSubmit={handleLogin} className="p-10">
           <div className="flex-col items-center mt-[3rem]">
             <label className="flex justify-start text-xl text-gray-400 p-1">
@@ -51,7 +51,7 @@ const FormLogin = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ingrese su correo"
-              className=" outline-none bg-[#1a2040] p-4 rounded-lg text-gray-500 w-full shadow-inner"
+              className=" outline-none bg-gray-100 p-4 rounded-lg text-gray-500 w-full shadow-md"
             />
             <label className="flex justify-start text-xl text-gray-400 mt-5 p-1">
               Password:
@@ -61,14 +61,14 @@ const FormLogin = () => {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Ingrese su contraseña"
-              className=" outline-none bg-[#1a2040] w-full p-4 rounded-lg text-gray-500 shadow-inner"
+              className=" outline-none bg-gray-100  p-4 rounded-lg text-gray-500 w-full shadow-md"
             />
           </div>
 
           <button
             onClick={handleprofile}
             type="submit"
-            className="bg-[#1a2040] p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors text-gray-500">
+            className="bg-gray-100 hover:bg-gray-200 p-4 rounded-xl w-full mt-20 uppercase shadow-xl hover:transition-colors text-gray-500">
             Iniciar sesion
           </button>
         </form>

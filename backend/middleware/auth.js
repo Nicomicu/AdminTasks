@@ -16,16 +16,16 @@ const auth = async (req, res, next) => {
         "-password -confirmado -token -createdAt -updatedAt -__v"
       )
 
-      return next()
+      next()
     } catch (error) {
       return res.status(404).json({ msg: "Hubo un error" })
     }
   }
+
   if (!token) {
     const error = new Error("No es Valido")
     return res.status(401).json({ msg: error.message })
   }
-  next()
 }
 
 export default auth

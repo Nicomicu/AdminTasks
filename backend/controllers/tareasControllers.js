@@ -4,7 +4,7 @@ const newtask = async (req, res) => {
   const { categoria } = req.body
   const newTask = new Tareas(req.body)
 
-  const validandoCategoria = [, "Pendiente", "En proceso", "Hecho"]
+  const validandoCategoria = ["Pendiente", "En proceso", "Hecho"]
   if (!validandoCategoria.includes(categoria)) {
     const error = new Error("Por favor coloque una categoria")
     return res.status(400).json({ msg: error.message })
