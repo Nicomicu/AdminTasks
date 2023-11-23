@@ -32,7 +32,7 @@ const TaskRadio = ({ categoria, setCategoria }) => {
               {({ checked }) => (
                 <div
                   className={`relative flex border rounded-lg shadow-lg p-4 ${
-                    checked ? "bg-[#3e7ee8] text-white" : ""
+                    checked ? "bg-[#3e7ee8] transition-colors text-white" : ""
                   }`}>
                   <div className="flex w-full items-center justify-between">
                     <div className="flex flex-col">

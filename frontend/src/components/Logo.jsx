@@ -1,9 +1,8 @@
 import Image from "next/image"
-import CloseSesion from "./CloseSesion"
 
-const Header = () => {
+const Logo = () => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center ">
       <div className="flex items-center">
         <Image
           src="/calendario.png"
@@ -18,11 +17,8 @@ const Header = () => {
           </p>
         </div>
       </div>
-      <div>
-        <CloseSesion />
-      </div>
     </div>
   )
 }
 
-export default Header
+export default Logo
