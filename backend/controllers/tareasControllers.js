@@ -1,16 +1,16 @@
 import Tareas from "../models/Tareas.js"
 
 const newtask = async (req, res) => {
-  const { categoria } = req.body
+  const { columns } = req.body
   const newTask = new Tareas(req.body)
 
-  const validandoCategoria = ["Pendiente", "En proceso", "Hecho"]
-  if (!validandoCategoria.includes(categoria)) {
+  const validandoColumns = ["Pendiente", "En proceso", "Hecho"]
+  if (!validandoColumns.includes(columns)) {
     const error = new Error("Por favor coloque una categoria")
     return res.status(400).json({ msg: error.message })
   }
   let collectionName
-  switch (categoria) {
+  switch (columns) {
     case "Borrador":
       collectionName = "borradores"
       break
@@ -62,8 +62,7 @@ const editask = async (req, res) => {
   }
   tarea.nombre = req.body.nombre || tarea.nombre
   tarea.descripcion = req.body.descripcion || tarea.descripcion
-  tarea.categoria = req.body.categoria || tarea.categoria
-  // tarea.prioridades = req.body.prioridades || tarea.prioridades
+  tarea.columns = req.body.columns || tarea.columns
   tarea.fechaEntrega = req.body.fechaEntrega || tarea.fechaEntrega
 
   try {

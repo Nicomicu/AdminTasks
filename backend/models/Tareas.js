@@ -7,7 +7,7 @@ const TareasSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    categoria: {
+    columns: {
       type: String,
       required: true,
       trim: true,

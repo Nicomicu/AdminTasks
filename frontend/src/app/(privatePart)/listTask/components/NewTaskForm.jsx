@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import useTask from "../../hook/useTask"
-import useModal from "../hook/useModal"
 import { toast } from "react-toastify"
 import Error from "@/components/Error"
 import newTaskRequest from "../services/newTaskRequest"
@@ -10,7 +9,7 @@ import TaskRadio from "./TaskRadio"
 
 const NewTaskForm = () => {
   const [nombre, setNombre] = useState("")
-  const [categoria, setCategoria] = useState("")
+  const [columns, setColumns] = useState("")
   const [fecha, setFecha] = useState(new Date())
   const [descripcion, setDescripcion] = useState("")
 
@@ -19,7 +18,7 @@ const NewTaskForm = () => {
 
   const handleFormTask = async (e) => {
     e.preventDefault()
-    if ([nombre, categoria, descripcion].includes("")) {
+    if ([nombre, columns, descripcion].includes("")) {
       toast.error("Por favor rellene los campos", {
         background: "#393c71",
         theme: "light",
@@ -30,18 +29,16 @@ const NewTaskForm = () => {
 
     const newTask = await newTaskRequest({
       nombre,
-      categoria,
+      columns,
       fecha,
       descripcion,
     })
-
     setTareas([...tareas, newTask])
 
     setNombre("")
-    setCategoria("")
+    setColumns("")
     setFecha("")
     setDescripcion("")
-    // setIsOpen(false)
   }
 
   const { msg } = alerta
@@ -60,7 +57,7 @@ const NewTaskForm = () => {
           placeholder="Nombre de la tarea"
           className="border border-gray-400 outline-none w-full bg-white p-4 rounded-lg text-gray-500 mt-2"
         />
-        <TaskRadio categoria={categoria} setCategoria={setCategoria} />
+        <TaskRadio columns={columns} setColumns={setColumns} />
         <label className="flex justify-start text-xl text-gray-500 mt-5 p-1">
           Fecha:
         </label>

@@ -2,7 +2,7 @@
 import { RadioGroup } from "@headlessui/react"
 import { GoCheckCircleFill } from "react-icons/go"
 
-const Categorias = [
+const Columns = [
   {
     id: "Pendiente",
     name: "Pendiente",
@@ -20,15 +20,15 @@ const Categorias = [
   },
 ]
 
-const TaskRadio = ({ categoria, setCategoria }) => {
+const TaskRadio = ({ columns, setColumns }) => {
   return (
-    <RadioGroup value={categoria} onChange={(e) => setCategoria(e)}>
+    <RadioGroup value={columns} onChange={(e) => setColumns(e)}>
       <RadioGroup.Label className="sr-only">Plan</RadioGroup.Label>
 
       <div className="mt-5">
-        {Categorias.map((categoriaItem) => (
-          <div key={categoriaItem.id} className="mt-2">
-            <RadioGroup.Option value={categoriaItem.id}>
+        {Columns.map((columnsItem) => (
+          <div key={columnsItem.id} className="mt-2">
+            <RadioGroup.Option value={columnsItem.id}>
               {({ checked }) => (
                 <div
                   className={`relative flex border rounded-lg shadow-lg p-4 ${
@@ -41,7 +41,7 @@ const TaskRadio = ({ categoria, setCategoria }) => {
                         className={`block text-xl font-medium text-gray-600 ${
                           checked ? "text-white text-2xl" : ""
                         }`}>
-                        {categoriaItem.name}
+                        {columnsItem.name}
                       </RadioGroup.Label>
 
                       <RadioGroup.Description
@@ -49,7 +49,7 @@ const TaskRadio = ({ categoria, setCategoria }) => {
                         className={`block text-sm mt-1 text-gray-600 ${
                           checked ? " text-white" : ""
                         }`}>
-                        {categoriaItem.description}
+                        {columnsItem.description}
                       </RadioGroup.Description>
                     </div>
                     {checked && (

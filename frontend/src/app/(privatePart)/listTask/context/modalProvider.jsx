@@ -11,7 +11,12 @@ const ModalProvider = ({ children }) => {
   }
 
   return (
-    <ModalContext.Provider value={{ isOpen, setIsOpen, handleClose }}>
+    <ModalContext.Provider
+      value={{
+        isOpen,
+        setIsOpen,
+        handleClose,
+      }}>
       {children}
     </ModalContext.Provider>
   )
