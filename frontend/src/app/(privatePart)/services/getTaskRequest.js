@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const getTaskRequest = async () => {
+const getTaskRequest = async (id) => {
   try {
     const token = localStorage.getItem("token")
     if (!token) return
@@ -10,7 +10,10 @@ const getTaskRequest = async () => {
         Authorization: `Bearer ${token}`,
       },
     }
-    const { data } = await axios.get(`http://localhost:4000/api/tareas`, config)
+    const { data } = await axios.get(
+      `http://localhost:4000/api/tareas/${id}`,
+      config
+    )
 
     return data
   } catch (error) {

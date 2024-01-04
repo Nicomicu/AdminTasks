@@ -1,25 +1,31 @@
+"use client"
 import { Menu } from "@headlessui/react"
 import { useParams } from "next/navigation"
-import useTask from "../../hook/useTask"
+import useTask from "../../../hook/useTask"
 import deleteRequest from "../services/deleteRequest"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-const MenuDelete = ({ tarea }) => {
-  const { tareas, setTareas } = useTask()
+const MenuDelete = ({ id }) => {
+  const { setTarea, tareas, tarea } = useTask()
 
-  const params = useParams()
-  const { id } = params
+  // const params = useParams()
+  // const { id } = params
+  // if (Array.isArray(tarea)) {
+  //   console.log("Es un arreglo")
+  // } else {
+  //   console.log("No es un arreglo")
+  // }
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
       await deleteRequest(id)
       const tareasActualizadas = tareas.filter(
         (tareaState) => tareaState._id !== id
       )
-      setTareas(tareasActualizadas)
+      setTarea(tareasActualizadas)
     } catch (error) {
       console.log(error)
     }

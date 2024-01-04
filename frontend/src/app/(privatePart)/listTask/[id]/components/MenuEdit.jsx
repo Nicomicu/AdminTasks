@@ -1,21 +1,50 @@
 "use client"
-import { Fragment, useState } from "react"
+
+import React, { Fragment, useState } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { GoKebabHorizontal } from "react-icons/go"
 import MenuDelete from "./MenuDelete"
+import { useParams } from "next/navigation"
+import editRequest from "../services/editRequest"
+import useTask from "../../../hook/useTask"
+import useModal from "../../hook/useModal"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function MenuEdit({ id, tarea }) {
+export default function MenuEdit({ id }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { setIsOpen, isOpen } = useModal()
+  const { tareas, tarea, setTarea, setTareas } = useTask()
+
+  const handleModalEdit = async (tarea) => {
+    setTarea(tarea)
+    setIsOpen(true)
+    await editarTarea(tarea._id)
+  }
+
+  const editarTarea = async (tarea) => {
+    console.log(tarea._id)
+    try {
+      const data = await editRequest(tarea, id)
+
+      const tareaActualizada = tareas.map((tareaState) =>
+        tareaState._id === data._id ? data : tareaState
+      )
+      setTarea(tareaActualizada)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
-          onClick={() => setIsMenuOpen(true)}
+          onClick={() => {
+            setIsMenuOpen(true)
+          }}
           className="inline-flex items-center w-full justify-center gap-x-1.5 rounded-md bg-white/50 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
           <GoKebabHorizontal
             className="-mr-1 h-5 w-5 text-black"
@@ -36,18 +65,22 @@ export default function MenuEdit({ id, tarea }) {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <button
-                  // { evento Onclick que tenga el isOpen para volver abrir el formulario }
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm w-full text-left"
-                  )}>
-                  Editar
-                </button>
+                <>
+                  <button
+                    onClick={() => {
+                      handleModalEdit(tarea)
+                    }}
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm w-full text-left"
+                    )}>
+                    Editar
+                  </button>
+                </>
               )}
             </Menu.Item>
           </div>
-          <MenuDelete id={id} tarea={tarea} />
+          <MenuDelete id={tarea._id} />
         </Menu.Items>
       </Transition>
     </Menu>

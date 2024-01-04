@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="text-center bg-[#d1daeb] bg-none">
         <AuthProvider>
-          <TaskProvider>
-            <ModalProvider>{children}</ModalProvider>
-          </TaskProvider>
+          <ModalProvider>
+            <TaskProvider>{children}</TaskProvider>
+          </ModalProvider>
         </AuthProvider>
 
         <ToastContainer />

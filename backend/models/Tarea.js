@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const TareasSchema = mongoose.Schema(
+const TareaSchema = mongoose.Schema(
   {
     nombre: {
       type: String,
@@ -34,5 +34,5 @@ const TareasSchema = mongoose.Schema(
     timestamps: true,
   }
 )
-const Tareas = mongoose.model("tareas", TareasSchema)
-export default Tareas
+const Tarea = mongoose.model("tarea", TareaSchema)
+export default Tarea

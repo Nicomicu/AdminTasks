@@ -1,4 +1,4 @@
-import ListTaskColumnPage from "./components/ListTaskColumn"
+import ListTaskColumnPage from "./[id]/components/ListTaskColumn"
 
 const ListTaskPage = () => {
   return <ListTaskColumnPage />

@@ -2,11 +2,12 @@
 
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { IoIosCloseCircle } from "react-icons/io"
-import useModal from "../hook/useModal"
-import NewTaskForm from "./NewTaskForm"
+import useModal from "../../hook/useModal"
+import FormComponent from "./FormComponent"
+import useTask from "../../../hook/useTask"
 
 const ModalComponent = () => {
+  const { id } = useTask()
   const { setIsOpen, isOpen } = useModal()
 
   return (
@@ -70,10 +71,9 @@ const ModalComponent = () => {
                     <Dialog.Title
                       as="h3"
                       className="text-lg leading-6 font-bold text-gray-900">
-                      Crea tu tarea aqui
+                      {id ? "Actualizar tarea" : "Crea una tarea"}
                     </Dialog.Title>
-
-                    <NewTaskForm />
+                    <FormComponent />
                   </div>
                 </div>
               </div>

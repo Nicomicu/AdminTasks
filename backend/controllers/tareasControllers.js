@@ -1,8 +1,7 @@
-import Tareas from "../models/Tareas.js"
+import Tarea from "../models/Tarea.js"
 
 const newtask = async (req, res) => {
   const { columns } = req.body
-  const newTask = new Tareas(req.body)
 
   const validandoColumns = ["Pendiente", "En proceso", "Hecho"]
   if (!validandoColumns.includes(columns)) {
@@ -27,17 +26,25 @@ const newtask = async (req, res) => {
       break
   }
   try {
-    await newTask.save()
-    res.json(newTask)
+    const tareaAlmacenada = await Tarea.create(req.body)
+    // tareaexistente.tareas.push(tareaAlmacenada._id)
+    res.json(tareaAlmacenada)
   } catch (error) {
     console.log(error)
   }
 }
 
 const gettask = async (req, res) => {
+  const { id } = req.params
+
   try {
-    const tareas = await Tareas.find()
-    res.json(tareas)
+    const tarea = await Tarea.findById(id)
+
+    if (!tarea) {
+      const error = new Error("Tarea no Encontrada")
+      return res.status(404).json({ msg: error.message })
+    }
+    res.json(tarea)
   } catch (error) {
     console.log(error)
   }
@@ -55,15 +62,15 @@ const gettask = async (req, res) => {
 
 const editask = async (req, res) => {
   const { id } = req.params
-  const tarea = await Tareas.findById(id)
+  const tarea = await Tarea.findById(id)
   if (!tarea) {
     const error = new Error("Tarea no encontrada")
     return res.status(400).json({ msg: error.message })
   }
   tarea.nombre = req.body.nombre || tarea.nombre
-  tarea.descripcion = req.body.descripcion || tarea.descripcion
   tarea.columns = req.body.columns || tarea.columns
-  tarea.fechaEntrega = req.body.fechaEntrega || tarea.fechaEntrega
+  tarea.fecha = req.body.fecha || tarea.fecha
+  tarea.descripcion = req.body.descripcion || tarea.descripcion
 
   try {
     await tarea.save()
@@ -74,7 +81,7 @@ const editask = async (req, res) => {
 }
 const deletetask = async (req, res) => {
   const { id } = req.params
-  const tarea = await Tareas.findById(id)
+  const tarea = await Tarea.findById(id)
   if (!tarea) {
     const error = new Error("Tarea no encontrada")
     return res.status(400).json({ msg: error.message })
