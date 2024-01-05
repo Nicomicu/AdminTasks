@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const getTaskRequest = async (id) => {
+const getTaskRequest = async (id = "") => {
   try {
     const token = localStorage.getItem("token")
     if (!token) return

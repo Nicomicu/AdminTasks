@@ -9,6 +9,7 @@ const TaskProvider = ({ children }) => {
   const [tareas, setTareas] = useState([])
   const [alerta, setAlerta] = useState(false)
   const [tarea, setTarea] = useState([])
+
   const params = useParams()
   const { id } = params
 
@@ -24,6 +25,14 @@ const TaskProvider = ({ children }) => {
 
     keepTasks()
   }, [])
+  const refresh = async () => {
+    try {
+      const data = await getTaskRequest(id)
+      setTareas(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   // const submitTask = async (tarea) => {
   //   console.log(tarea)
@@ -49,6 +58,7 @@ const TaskProvider = ({ children }) => {
         alerta,
         setTareas,
         cerrarSesion,
+        refresh,
         // id,
         // setId,
         // nombre,

@@ -13,21 +13,20 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function MenuEdit({ id }) {
+export default function MenuEdit({ id, tarea }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { setIsOpen, isOpen } = useModal()
-  const { tareas, tarea, setTarea, setTareas } = useTask()
+  const { refresh, setTarea, tareas } = useTask()
 
-  const handleModalEdit = async (tarea) => {
-    setTarea(tarea)
-    setIsOpen(true)
-    await editarTarea(tarea._id)
-  }
+  // if (Array.isArray(tarea)) {
+  //   console.log("Es un arreglo")
+  // } else {
+  //   console.log("No es un arreglo")
+  // }
 
-  const editarTarea = async (tarea) => {
-    console.log(tarea._id)
+  const editarTarea = async () => {
     try {
-      const data = await editRequest(tarea, id)
+      const data = await editRequest(tarea)
 
       const tareaActualizada = tareas.map((tareaState) =>
         tareaState._id === data._id ? data : tareaState
@@ -36,6 +35,11 @@ export default function MenuEdit({ id }) {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const handleModalEdit = async (tarea) => {
+    setIsOpen(true)
+    await editarTarea(tarea._id)
   }
 
   return (
@@ -80,7 +84,7 @@ export default function MenuEdit({ id }) {
               )}
             </Menu.Item>
           </div>
-          <MenuDelete id={tarea._id} />
+          <MenuDelete id={id} tarea={tarea} />
         </Menu.Items>
       </Transition>
     </Menu>

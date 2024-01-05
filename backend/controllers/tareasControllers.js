@@ -48,7 +48,19 @@ const gettask = async (req, res) => {
   } catch (error) {
     console.log(error)
   }
+}
+const getAltTask = async (req, res) => {
+  try {
+    const tarea = await Tarea.find()
 
+    if (!tarea) {
+      const error = new Error("Tarea no Encontrada")
+      return res.status(404).json({ msg: error.message })
+    }
+    res.json(tarea)
+  } catch (error) {
+    console.log(error)
+  }
   // try {
   //   if (tareas.length === 0) {
   //     return res.status(200).json({ msg: "No hay tareas disponibles" })
@@ -94,4 +106,4 @@ const deletetask = async (req, res) => {
   }
 }
 
-export { newtask, gettask, editask, deletetask }
+export { newtask, gettask, editask, deletetask, getAltTask }

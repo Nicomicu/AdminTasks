@@ -1,7 +1,6 @@
 import axios from "axios"
 
-const editRequest = async (tarea, id) => {
-  console.log(id)
+const editRequest = async (tarea) => {
   try {
     const { data } = await axios.put(
       `http://localhost:4000/api/tareas/${tarea.id}`,

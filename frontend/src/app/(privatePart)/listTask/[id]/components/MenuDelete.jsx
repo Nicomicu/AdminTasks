@@ -8,16 +8,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-const MenuDelete = ({ id }) => {
-  const { setTarea, tareas, tarea } = useTask()
-
-  // const params = useParams()
-  // const { id } = params
-  // if (Array.isArray(tarea)) {
-  //   console.log("Es un arreglo")
-  // } else {
-  //   console.log("No es un arreglo")
-  // }
+const MenuDelete = ({ id, tarea }) => {
+  const { setTareas, tareas } = useTask()
 
   const handleDelete = async () => {
     try {
@@ -25,7 +17,7 @@ const MenuDelete = ({ id }) => {
       const tareasActualizadas = tareas.filter(
         (tareaState) => tareaState._id !== id
       )
-      setTarea(tareasActualizadas)
+      setTareas(tareasActualizadas)
     } catch (error) {
       console.log(error)
     }
