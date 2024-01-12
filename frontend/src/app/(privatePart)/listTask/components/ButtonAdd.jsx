@@ -1,17 +1,14 @@
 "use client"
 
-import useModal from "../../hook/useModal"
 import { IoAddCircle } from "react-icons/io5"
 import ModalComponent from "./ModalComponent"
-import useTask from "../../../hook/useTask"
+import useTask from "../../hook/useTask"
 
 const ButtonAdd = () => {
-  const { setTareas } = useTask()
-  const { isOpen, setIsOpen } = useModal()
+  const { setTareas, isOpen, setIsOpen } = useTask()
 
   const handleClickOpen = () => {
     setIsOpen(true)
-    setTareas([])
   }
 
   return (

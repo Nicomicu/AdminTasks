@@ -1,47 +1,40 @@
 "use client"
-import React, { useState, useEffect, createContext } from "react"
+import React, { useState, createContext, useEffect } from "react"
 import getTaskRequest from "../services/getTaskRequest"
-import { useParams } from "next/navigation"
 
 const TaskContext = createContext()
 
 const TaskProvider = ({ children }) => {
   const [tareas, setTareas] = useState([])
   const [alerta, setAlerta] = useState(false)
-  const [tarea, setTarea] = useState([])
+  const [tarea, setTarea] = useState({})
 
-  const params = useParams()
-  const { id } = params
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleClose = () => {
+    setIsOpen(!isOpen)
+    setTarea({})
+  }
 
   useEffect(() => {
     const keepTasks = async () => {
       try {
-        const data = await getTaskRequest(id)
+        const data = await getTaskRequest(tareas)
         setTareas(data)
       } catch (error) {
         console.log(error)
       }
     }
-
     keepTasks()
-  }, [])
-  const refresh = async () => {
-    try {
-      const data = await getTaskRequest(id)
-      setTareas(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  }, [tareas])
 
-  // const submitTask = async (tarea) => {
-  //   console.log(tarea)
-  //   if (tarea.id) {
-  //     await editarTarea(tarea)
-  //   } else {
-  //     await newTask(tarea)
+  // const refresh = async () => {
+  //   try {
+  //     const data = await getTaskRequest(id)
+  //     setTareas(data)
+  //   } catch (error) {
+  //     console.log(error)
   //   }
-  //   return
   // }
 
   const cerrarSesion = () => {
@@ -58,17 +51,9 @@ const TaskProvider = ({ children }) => {
         alerta,
         setTareas,
         cerrarSesion,
-        refresh,
-        // id,
-        // setId,
-        // nombre,
-        // setNombre,
-        // columns,
-        // setColumns,
-        // descripcion,
-        // setDescripcion,
-        // fecha,
-        // setFecha,
+        handleClose,
+        isOpen,
+        setIsOpen,
       }}>
       {children}
     </TaskContext.Provider>

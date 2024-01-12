@@ -1,0 +1,173 @@
+[33mcommit 2578afaaa841a45476881731a3406a4600470e25[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Fri Jan 5 09:56:00 2024 -0300
+
+    buttondelete
+
+[33mcommit ed31e2257cde2ed0804b204f8bcf6068aea5da09[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Jan 4 12:12:27 2024 -0300
+
+    ultima actualizacion
+
+[33mcommit 54f8ce22b36337edc4ceb0143ccb4439c2c65197[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Tue Nov 28 17:40:32 2023 -0300
+
+    Menuedit,menudelete,deleterequest
+
+[33mcommit eac52ae051b52d60fbf415eda811f1c8f8064bf8[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Nov 23 11:03:46 2023 -0300
+
+    partPublic-imagenes
+
+[33mcommit 4e19ee0dc351ad60b2b03fd3cee673d14067d4d8[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Tue Nov 21 12:21:15 2023 -0300
+
+    listas-components
+
+[33mcommit f34f14ba7a114e875d3b26f7ca3b868d1a1cc450[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Tue Nov 14 17:25:39 2023 -0300
+
+    listTask-components
+
+[33mcommit ff711fc41610fcf58ce1c2681a2446e3b1035489[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Oct 25 13:39:15 2023 -0300
+
+    listTask lee tareas
+
+[33mcommit 5b53b24afb2e85552ce38abb51ba07375f566abe[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Tue Oct 24 17:13:17 2023 -0300
+
+    correcion state- authusuario
+
+[33mcommit 5319bff9bc3463b1d704c9e7bb017d8467b6380b[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Oct 12 17:46:24 2023 -0300
+
+    services-newTaskForm
+
+[33mcommit 0b24266586ab1f5bb058f9b4183ceff9587916ea[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Oct 12 14:20:15 2023 -0300
+
+    correcion array
+
+[33mcommit 4cc1285d1eda5cce56ebb5190b37a18280d2434b[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Oct 11 10:44:00 2023 -0300
+
+    private-componnets-context
+
+[33mcommit a7805c727e83caf6d6fc4346495ab4372043be87[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Oct 5 13:05:41 2023 -0300
+
+    formTask-helpers
+
+[33mcommit 498ef16946c5987e57f0d938caca481320c94c30[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Mon Oct 2 14:10:09 2023 -0300
+
+    componentsForm
+
+[33mcommit a86a22d4c7365541aa02c47170688d14199e6389[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Sep 28 13:55:01 2023 -0300
+
+    newtask-listbox
+
+[33mcommit 155c6fccb358bb84f3a61af20c77058da4e61687[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 27 17:26:14 2023 -0300
+
+    newtask-sidebar
+
+[33mcommit bd2525836a8d0374c0d206f6ba15a43b402c1f0d[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Mon Sep 25 14:05:57 2023 -0300
+
+    publicpart-privatepart
+
+[33mcommit eac2f489da73c628f59915d79f791e3a8ecd10cc[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Mon Sep 25 13:27:33 2023 -0300
+
+    services- authcontext
+
+[33mcommit 5d7ce9e46bb49cdc1a290312902de29778a8b18f[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Thu Sep 21 11:43:03 2023 -0300
+
+    autenticacion-token
+
+[33mcommit 1b6fc9067451ed44b9124349bd1b309d726d5e34[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 20 17:37:20 2023 -0300
+
+    login
+
+[33mcommit 769f6bdd49c46fd15707ba3e8027578b75f71c31[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 20 12:44:58 2023 -0300
+
+    authProvider
+
+[33mcommit 48155175a17a1b6a695a5f0f5eb754d4fe866614[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Tue Sep 19 12:38:55 2023 -0300
+
+    partPublic
+
+[33mcommit 9abfb013bd9083b78c9d0ea0e815a17b84b96146[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 13 18:01:22 2023 -0300
+
+    context olvidePassword
+
+[33mcommit af4072de7734c37d19820fc5cfde49a26a4ec078[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Mon Sep 11 13:56:03 2023 -0300
+
+    auth.js
+
+[33mcommit 3d96719bb0b4ca32048d3b138a66eb29e8a8bda3[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Fri Sep 8 17:00:19 2023 -0300
+
+    middleware
+
+[33mcommit 3b329191ebd414a6773e4bc937327e7e09fba68f[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Fri Sep 8 14:14:46 2023 -0300
+
+    cors - registroFuncionando
+
+[33mcommit 606a407e2b808f1028e86097c72b79304e302da8[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 6 17:44:50 2023 -0300
+
+    login-registro-olvidepassword
+
+[33mcommit 112b0fdd5e5fcc8943a2e6032ac92b4225632a02[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 6 10:55:09 2023 -0300
+
+    frontend
+
+[33mcommit 4b41c54ba65dad5ccd586b1b79b77559bcc0df11[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Wed Sep 6 10:40:22 2023 -0300
+
+    tareacontrollers terminada
+
+[33mcommit e757a0718f5a0a5eed061f8d6a5fc47f4a84ad19[m
+Author: Nicomicu <112415563+Nicomicu@users.noreply.github.com>
+Date:   Tue Sep 5 18:02:52 2023 -0300
+
+    tareasContronllers

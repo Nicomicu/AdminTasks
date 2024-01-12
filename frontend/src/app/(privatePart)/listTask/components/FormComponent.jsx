@@ -1,13 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import useTask from "../../../hook/useTask"
+import useTask from "../../hook/useTask"
 import { useParams } from "next/navigation"
 import { toast } from "react-toastify"
 import Error from "@/components/Error"
 import newTaskRequest from "../services/newTaskRequest"
 import TaskRadio from "./TaskRadio"
-import useModal from "../../hook/useModal"
 
 const FormComponent = () => {
   const [nombre, setNombre] = useState("")
@@ -26,10 +25,10 @@ const FormComponent = () => {
   useEffect(() => {
     if (tarea?._id) {
       setNombre(tarea.nombre)
-      setId(tarea._id)
       setColumns(tarea.columns)
       setFecha(tarea.fecha?.split("T")[0])
       setDescripcion(tarea.descripcion)
+      setIdTarea(tarea._id)
     }
   }, [tarea])
 
@@ -55,7 +54,6 @@ const FormComponent = () => {
 
       setTareas([...tareas, newTask])
 
-      setIdTarea("")
       setNombre("")
       setColumns("")
       setFecha("")

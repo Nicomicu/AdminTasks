@@ -6,8 +6,7 @@ import { GoKebabHorizontal } from "react-icons/go"
 import MenuDelete from "./MenuDelete"
 import { useParams } from "next/navigation"
 import editRequest from "../services/editRequest"
-import useTask from "../../../hook/useTask"
-import useModal from "../../hook/useModal"
+import useTask from "@/app/(privatePart)/hook/useTask"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -15,8 +14,14 @@ function classNames(...classes) {
 
 export default function MenuEdit({ id, tarea }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { setIsOpen, isOpen } = useModal()
-  const { refresh, setTarea, tareas } = useTask()
+  const { setTarea, setIsOpen, isOpen, setTareas, tareas } = useTask()
+
+  const actualizarTarea = (tarea) => {
+    setTarea(tarea)
+    setIsOpen(true)
+  }
+  // const params = useParams()
+  // const { id } = params
 
   // if (Array.isArray(tarea)) {
   //   console.log("Es un arreglo")
@@ -24,23 +29,24 @@ export default function MenuEdit({ id, tarea }) {
   //   console.log("No es un arreglo")
   // }
 
-  const editarTarea = async () => {
-    try {
-      const data = await editRequest(tarea)
+  // }
 
-      const tareaActualizada = tareas.map((tareaState) =>
-        tareaState._id === data._id ? data : tareaState
-      )
-      setTarea(tareaActualizada)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const editarTarea = async () => {
+  //   try {
+  //     const data = await editRequest(tarea, id)
 
-  const handleModalEdit = async (tarea) => {
-    setIsOpen(true)
-    await editarTarea(tarea._id)
-  }
+  //     const tareaActualizada = tareas.map((tareaState) =>
+  //       tareaState._id === data._id ? data : tareaState
+  //     )
+  //     setTarea(tareaActualizada)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+  // const handleModalEdit = async (tarea) => {
+  //   setIsOpen(true)
+  //   await editarTarea(tarea)
+  // }
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -72,7 +78,7 @@ export default function MenuEdit({ id, tarea }) {
                 <>
                   <button
                     onClick={() => {
-                      handleModalEdit(tarea)
+                      actualizarTarea(tarea)
                     }}
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",

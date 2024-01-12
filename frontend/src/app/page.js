@@ -1,7 +1,10 @@
-import React from "react"
-
+import ListTaskPage from "./(privatePart)/listTask/page"
 const page = () => {
-  return <div>page</div>
+  return (
+    <div>
+      <ListTaskPage />
+    </div>
+  )
 }
 
 export default page

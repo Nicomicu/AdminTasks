@@ -2,13 +2,11 @@
 
 import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import useModal from "../../hook/useModal"
 import FormComponent from "./FormComponent"
-import useTask from "../../../hook/useTask"
+import useTask from "../../hook/useTask"
 
 const ModalComponent = () => {
-  const { id } = useTask()
-  const { setIsOpen, isOpen } = useModal()
+  const { id, setIsOpen, isOpen } = useTask()
 
   return (
     <>

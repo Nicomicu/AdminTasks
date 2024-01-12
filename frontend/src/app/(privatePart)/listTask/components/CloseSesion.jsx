@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import useTask from "../../../hook/useTask"
+import useTask from "../../hook/useTask"
 import useAuth from "@/hooks/useAuth"
 
 const CloseSesion = () => {

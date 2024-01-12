@@ -1,7 +1,8 @@
 "use client"
+
 import { Menu } from "@headlessui/react"
 import { useParams } from "next/navigation"
-import useTask from "../../../hook/useTask"
+import useTask from "../../hook/useTask"
 import deleteRequest from "../services/deleteRequest"
 
 function classNames(...classes) {
@@ -29,7 +30,7 @@ const MenuDelete = ({ id, tarea }) => {
         {({ active }) => (
           <button
             onClick={() => {
-              handleDelete(tarea._id)
+              handleDelete(tarea)
             }}
             className={classNames(
               active ? "bg-gray-100 text-red-400" : "text-gray-700",
