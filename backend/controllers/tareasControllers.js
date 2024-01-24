@@ -72,9 +72,10 @@ const getAltTask = async (req, res) => {
   // }
 }
 
-const editask = async (req, res) => {
+const updateTask = async (req, res) => {
   const { id } = req.params
   const tarea = await Tarea.findById(id)
+
   if (!tarea) {
     const error = new Error("Tarea no encontrada")
     return res.status(400).json({ msg: error.message })
@@ -85,8 +86,8 @@ const editask = async (req, res) => {
   tarea.descripcion = req.body.descripcion || tarea.descripcion
 
   try {
-    await tarea.save()
-    res.json({ msg: "Tarea editada con exito" })
+    const tareaAlmacenada = await tarea.save()
+    res.json(tareaAlmacenada)
   } catch (error) {
     console.log(error)
   }
@@ -106,4 +107,4 @@ const deletetask = async (req, res) => {
   }
 }
 
-export { newtask, gettask, editask, deletetask, getAltTask }
+export { newtask, gettask, updateTask, deletetask, getAltTask }

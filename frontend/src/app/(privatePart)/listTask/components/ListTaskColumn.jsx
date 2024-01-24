@@ -1,5 +1,5 @@
 "use client"
-import useTask from "../../hook/useTask"
+import useTask from "../hook/useTask"
 import Header from "./Header"
 import ColumnId from "./ColumnId"
 

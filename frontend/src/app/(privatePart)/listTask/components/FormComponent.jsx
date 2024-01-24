@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import useTask from "../../hook/useTask"
+import useTask from "@/app/(privatePart)/[id]/listTask/hook/useTask"
 import { useParams } from "next/navigation"
 import { toast } from "react-toastify"
 import Error from "@/components/Error"

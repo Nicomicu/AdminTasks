@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, createContext, useEffect } from "react"
-import getTaskRequest from "../services/getTaskRequest"
+import getTaskRequest from "../../../services/getTaskRequest"
 
 const TaskContext = createContext()
 
@@ -8,7 +8,7 @@ const TaskProvider = ({ children }) => {
   const [tareas, setTareas] = useState([])
   const [alerta, setAlerta] = useState(false)
   const [tarea, setTarea] = useState({})
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClose = () => {
@@ -54,6 +54,7 @@ const TaskProvider = ({ children }) => {
         handleClose,
         isOpen,
         setIsOpen,
+        setIsMenuOpen,
       }}>
       {children}
     </TaskContext.Provider>

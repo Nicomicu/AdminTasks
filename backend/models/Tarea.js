@@ -34,5 +34,5 @@ const TareaSchema = mongoose.Schema(
     timestamps: true,
   }
 )
-const Tarea = mongoose.model("tarea", TareaSchema)
+const Tarea = mongoose.model("Tarea", TareaSchema)
 export default Tarea

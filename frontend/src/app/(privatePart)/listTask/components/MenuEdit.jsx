@@ -1,27 +1,24 @@
-"use client"
-
 import React, { Fragment, useState } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { GoKebabHorizontal } from "react-icons/go"
 import MenuDelete from "./MenuDelete"
 import { useParams } from "next/navigation"
 import editRequest from "../services/editRequest"
-import useTask from "@/app/(privatePart)/hook/useTask"
+import useTask from "@/app/(privatePart)/[id]/listTask/hook/useTask"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function MenuEdit({ id, tarea }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { setTarea, setIsOpen, isOpen, setTareas, tareas } = useTask()
+export default function MenuEdit({ tarea }) {
+  const { setTarea, setIsOpen, isOpen, setTareas, tareas, setIsMenuOpen } =
+    useTask()
 
-  const actualizarTarea = (tarea) => {
+  const updateTask = async (tarea) => {
     setTarea(tarea)
     setIsOpen(true)
+    await editTask()
   }
-  // const params = useParams()
-  // const { id } = params
 
   // if (Array.isArray(tarea)) {
   //   console.log("Es un arreglo")
@@ -31,22 +28,18 @@ export default function MenuEdit({ id, tarea }) {
 
   // }
 
-  // const editarTarea = async () => {
-  //   try {
-  //     const data = await editRequest(tarea, id)
+  const editTask = async () => {
+    try {
+      const data = await editRequest(tarea, id)
 
-  //     const tareaActualizada = tareas.map((tareaState) =>
-  //       tareaState._id === data._id ? data : tareaState
-  //     )
-  //     setTarea(tareaActualizada)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-  // const handleModalEdit = async (tarea) => {
-  //   setIsOpen(true)
-  //   await editarTarea(tarea)
-  // }
+      const tareasActualizadas = tareas.map((tareaState) =>
+        tareaState._id === data._id ? data : tareaState
+      )
+      setTareas(tareasActualizadas)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -78,7 +71,7 @@ export default function MenuEdit({ id, tarea }) {
                 <>
                   <button
                     onClick={() => {
-                      actualizarTarea(tarea)
+                      updateTask(tarea)
                     }}
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",

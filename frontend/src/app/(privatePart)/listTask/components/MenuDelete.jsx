@@ -2,7 +2,7 @@
 
 import { Menu } from "@headlessui/react"
 import { useParams } from "next/navigation"
-import useTask from "../../hook/useTask"
+import useTask from "../hook/useTask"
 import deleteRequest from "../services/deleteRequest"
 
 function classNames(...classes) {
