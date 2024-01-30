@@ -1,45 +1,34 @@
-import React, { Fragment, useState } from "react"
+import React, { Fragment } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { GoKebabHorizontal } from "react-icons/go"
 import MenuDelete from "./MenuDelete"
-import { useParams } from "next/navigation"
-import editRequest from "../services/editRequest"
-import useTask from "@/app/(privatePart)/[id]/listTask/hook/useTask"
+import useTask from "../hook/useTask"
+import { toast } from "react-toastify"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function MenuEdit({ tarea }) {
-  const { setTarea, setIsOpen, isOpen, setTareas, tareas, setIsMenuOpen } =
-    useTask()
+export default function MenuEdit({ tarea, id }) {
+  const { setTarea, setIsOpen, setIsMenuOpen } = useTask()
 
-  const updateTask = async (tarea) => {
+  const updateTask = async () => {
     setTarea(tarea)
     setIsOpen(true)
-    await editTask()
   }
+  // const editTask = async (tarea) => {
+  //   try {
+  //     console.log(tarea)
+  //     const data = await editRequest(tarea, id)
 
-  // if (Array.isArray(tarea)) {
-  //   console.log("Es un arreglo")
-  // } else {
-  //   console.log("No es un arreglo")
+  //     const tareasActualizadas = tareas.map((tareaState) =>
+  //       tareaState._id === data._id ? data : tareaState
+  //     )
+  //     setTareas(tareasActualizadas)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
   // }
-
-  // }
-
-  const editTask = async () => {
-    try {
-      const data = await editRequest(tarea, id)
-
-      const tareasActualizadas = tareas.map((tareaState) =>
-        tareaState._id === data._id ? data : tareaState
-      )
-      setTareas(tareasActualizadas)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -70,9 +59,7 @@ export default function MenuEdit({ tarea }) {
               {({ active }) => (
                 <>
                   <button
-                    onClick={() => {
-                      updateTask(tarea)
-                    }}
+                    onClick={() => updateTask(tarea)}
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                       "block px-4 py-2 text-sm w-full text-left"

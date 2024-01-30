@@ -2,7 +2,7 @@
 
 import { IoAddCircle } from "react-icons/io5"
 import ModalComponent from "./ModalComponent"
-import useTask from "@/app/(privatePart)/[id]/listTask/hook/useTask"
+import useTask from "../hook/useTask"
 
 const ButtonAdd = () => {
   const { setTareas, isOpen, setIsOpen } = useTask()

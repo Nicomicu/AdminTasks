@@ -1,4 +1,4 @@
-import ListTaskPage from "./(privatePart)/[id]/listTask/page"
+import ListTaskPage from "./(privatePart)/listTask/page"
 
 const ListPage = () => {
   return (

@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import useTask from "@/app/(privatePart)/[id]/listTask/hook/useTask"
+import { Dialog } from "@headlessui/react"
+import useTask from "../hook/useTask"
 import { useParams } from "next/navigation"
 import { toast } from "react-toastify"
 import Error from "@/components/Error"
@@ -13,23 +14,28 @@ const FormComponent = () => {
   const [columns, setColumns] = useState("")
   const [fecha, setFecha] = useState(new Date())
   const [descripcion, setDescripcion] = useState("")
-  const [idTarea, setIdTarea] = useState("")
+  const [id, setId] = useState("")
 
-  const { alerta, tarea, tareas, setTareas } = useTask()
+  const { alerta, tarea, tareas, setTareas, submitTarea } = useTask()
 
   // const { setIsOpen, handleClose } = useModal
 
   const params = useParams()
-  const { id } = params
 
   useEffect(() => {
     if (tarea?._id) {
+      setId(tarea._id)
       setNombre(tarea.nombre)
       setColumns(tarea.columns)
       setFecha(tarea.fecha?.split("T")[0])
       setDescripcion(tarea.descripcion)
-      setIdTarea(tarea._id)
+      return
     }
+    setId("")
+    setNombre("")
+    setColumns("")
+    setFecha("")
+    setDescripcion("")
   }, [tarea])
 
   const handleFormTask = async (e) => {
@@ -43,24 +49,21 @@ const FormComponent = () => {
       return
     }
 
-    try {
-      const newTask = await newTaskRequest({
-        nombre,
-        id,
-        columns,
-        fecha,
-        descripcion,
-      })
+    // const { data } = await newTaskRequest({
+    //   nombre,
+    //   columns,
+    //   fecha,
+    //   descripcion,
+    //   id,
+    // })
+    await submitTarea({ id, nombre, columns, fecha, descripcion })
+    // setTareas([...tareas, data])
 
-      setTareas([...tareas, newTask])
-
-      setNombre("")
-      setColumns("")
-      setFecha("")
-      setDescripcion("")
-    } catch (error) {
-      console.error(error, error.response)
-    }
+    setId("")
+    setNombre("")
+    setColumns("")
+    setFecha("")
+    setDescripcion("")
   }
 
   const { msg } = alerta
@@ -70,6 +73,16 @@ const FormComponent = () => {
       {msg && <Error alerta={alerta} />}
 
       <form onSubmit={handleFormTask}>
+        <div className="sm:flex sm:items-start">
+          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+            <Dialog.Title
+              as="h3"
+              className="text-lg leading-6 font-bold text-gray-900">
+              {id ? "Actualizar tarea" : "Crea una tarea"}
+            </Dialog.Title>
+          </div>
+        </div>
+
         <input
           value={nombre}
           onChange={(e) => {

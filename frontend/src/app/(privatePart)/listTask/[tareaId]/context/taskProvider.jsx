@@ -1,6 +1,9 @@
 "use client"
+
 import React, { useState, createContext, useEffect } from "react"
-import getTaskRequest from "../../../services/getTaskRequest"
+import getTaskRequest from "../services/getTaskRequest"
+import newTaskRequest from "../services/newTaskRequest"
+import editRequest from "../services/editRequest"
 
 const TaskContext = createContext()
 
@@ -13,7 +16,37 @@ const TaskProvider = ({ children }) => {
 
   const handleClose = () => {
     setIsOpen(!isOpen)
-    setTarea({})
+    // setTarea({})
+  }
+  const submitTarea = async (tarea) => {
+    if (tarea?.id) {
+      await editTask(tarea)
+    } else {
+      await addTask(tarea)
+    }
+  }
+
+  const addTask = async () => {
+    try {
+      const { data } = await newTaskRequest(tarea)
+      setTareas([...tareas, data])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const editTask = async (tarea) => {
+    try {
+      const { data } = await editRequest(tarea)
+
+      const tareasActualizadas = tareas.map((tareaState) =>
+        tareaState._id === data._id ? data : tareaState
+      )
+      setTareas(tareasActualizadas)
+      setIsOpen(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -22,23 +55,14 @@ const TaskProvider = ({ children }) => {
         const data = await getTaskRequest(tareas)
         setTareas(data)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     }
     keepTasks()
   }, [tareas])
 
-  // const refresh = async () => {
-  //   try {
-  //     const data = await getTaskRequest(id)
-  //     setTareas(data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
   const cerrarSesion = () => {
-    setTarea([])
+    setTareas([])
     setAlerta(false)
   }
 
@@ -55,6 +79,7 @@ const TaskProvider = ({ children }) => {
         isOpen,
         setIsOpen,
         setIsMenuOpen,
+        submitTarea,
       }}>
       {children}
     </TaskContext.Provider>

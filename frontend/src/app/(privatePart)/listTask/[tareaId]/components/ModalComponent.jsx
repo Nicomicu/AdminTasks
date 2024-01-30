@@ -4,9 +4,8 @@ import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import FormComponent from "./FormComponent"
 import useTask from "../hook/useTask"
-
 const ModalComponent = () => {
-  const { id, setIsOpen, isOpen } = useTask()
+  const { setIsOpen, isOpen, handleClose } = useTask()
 
   return (
     <>
@@ -14,8 +13,8 @@ const ModalComponent = () => {
         <Dialog
           as="div"
           className="fixed z-10 inset-0 overflow-y-auto"
-          open={isOpen}
-          onClose={() => setIsOpen(true)}>
+          // open={isOpen}
+          onClose={handleClose}>
           <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -64,15 +63,8 @@ const ModalComponent = () => {
                   </button>
                 </div>
 
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg leading-6 font-bold text-gray-900">
-                      {id ? "Actualizar tarea" : "Crea una tarea"}
-                    </Dialog.Title>
-                    <FormComponent />
-                  </div>
+                <div>
+                  <FormComponent />
                 </div>
               </div>
             </Transition.Child>

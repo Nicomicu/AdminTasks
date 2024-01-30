@@ -1,9 +1,11 @@
-import React from "react"
-import editRequest from "../services/editRequest"
+import MenuEdit from "./components/MenuEdit"
 
-const page = async ({ params }) => {
-  const Tarea = await editRequest(params.tareaId)
-  return <div>{params.tareaId}</div>
+const tareaId = ({ params }) => {
+  return (
+    <div>
+      <MenuEdit />
+    </div>
+  )
 }
 
-export default page
+export default tareaId
