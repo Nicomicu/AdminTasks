@@ -5,7 +5,7 @@ const newtask = async (req, res) => {
 
   const validandoColumns = ["Pendiente", "En proceso", "Hecho"]
   if (!validandoColumns.includes(columns)) {
-    const error = new Error("Por favor coloque una categoria")
+    const error = new Error("Por favor coloque un estado")
     return res.status(400).json({ msg: error.message })
   }
   let collectionName
@@ -27,28 +27,12 @@ const newtask = async (req, res) => {
   }
   try {
     const tareaAlmacenada = await Tarea.create(req.body)
-    // tareaexistente.tareas.push(tareaAlmacenada._id)
     res.json(tareaAlmacenada)
   } catch (error) {
     console.log(error)
   }
 }
 
-const gettask = async (req, res) => {
-  const { id } = req.params
-
-  try {
-    const tarea = await Tarea.findById(id)
-
-    if (!tarea) {
-      const error = new Error("Tarea no Encontrada")
-      return res.status(404).json({ msg: error.message })
-    }
-    res.json(tarea)
-  } catch (error) {
-    console.log(error)
-  }
-}
 const getAltTask = async (req, res) => {
   try {
     const tarea = await Tarea.find()
@@ -72,6 +56,25 @@ const getAltTask = async (req, res) => {
   // }
 }
 
+const gettask = async (req, res) => {
+  const { id } = req.params
+
+  if (!id) {
+    const error = new Error("Id de tarea no especificado")
+    return res.status(400).json({ msg: error.message })
+  }
+  try {
+    const tarea = await Tarea.findById(id)
+
+    if (!tarea) {
+      const error = new Error("Tarea no Encontrada")
+      return res.status(404).json({ msg: error.message })
+    }
+    res.json(tarea)
+  } catch (error) {
+    console.log(error)
+  }
+}
 const updateTask = async (req, res) => {
   const { id } = req.params
   const tarea = await Tarea.findById(id)
@@ -107,4 +110,4 @@ const deletetask = async (req, res) => {
   }
 }
 
-export { newtask, gettask, updateTask, deletetask, getAltTask }
+export { newtask, updateTask, deletetask, getAltTask, gettask }

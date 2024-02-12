@@ -56,7 +56,13 @@ const FormComponent = () => {
     //   descripcion,
     //   id,
     // })
-    await submitTarea({ id, nombre, columns, fecha, descripcion })
+    await submitTarea({
+      id,
+      nombre,
+      columns,
+      fecha,
+      descripcion,
+    })
     // setTareas([...tareas, data])
 
     setId("")

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { GoKebabHorizontal } from "react-icons/go"
-import MenuDelete from "./MenuDelete"
+import MenuDelete from "../components/MenuDelete"
 import useTask from "../hook/useTask"
 import { toast } from "react-toastify"
 

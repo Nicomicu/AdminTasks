@@ -1,4 +1,4 @@
-import MenuEdit from "./components/MenuEdit"
+import MenuEdit from "./MenuEdit"
 
 const tareaId = ({ params }) => {
   return (

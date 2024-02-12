@@ -3,7 +3,7 @@ import { Inter } from "next/font/google"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { AuthProvider } from "@/context/AuthProvider"
-import { TaskProvider } from "./(privatePart)/listTask/[tareaId]/context/taskProvider"
+import { TaskProvider } from "./(privatePart)/listTask/context/taskProvider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {

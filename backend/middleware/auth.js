@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
 
       next()
     } catch (error) {
-      return res.status(404).json({ msg: "Hubo un error" })
+      return res.status(401).json({ msg: "Hubo un error" })
     }
   }
 

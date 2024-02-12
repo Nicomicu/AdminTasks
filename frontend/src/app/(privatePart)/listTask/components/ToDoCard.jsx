@@ -1,7 +1,7 @@
 "use client"
 import { formateoFecha } from "@/app/helpers/FormateoFecha"
 import { useState } from "react"
-import MenuEdit from "./MenuEdit"
+import MenuEdit from "../[tareaId]/MenuEdit"
 
 const ToDoCard = ({ tarea }) => {
   const [active, setActive] = useState(false)
