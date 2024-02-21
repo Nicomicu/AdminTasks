@@ -1,6 +1,5 @@
 import ListTaskPage from "./(privatePart)/listTask/page"
-
-const ListPage = () => {
+const page = () => {
   return (
     <div>
       <ListTaskPage />
@@ -8,4 +7,4 @@ const ListPage = () => {
   )
 }
 
-export default ListPage
+export default page

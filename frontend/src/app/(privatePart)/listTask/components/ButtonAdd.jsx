@@ -5,7 +5,7 @@ import ModalComponent from "./ModalComponent"
 import useTask from "../hook/useTask"
 
 const ButtonAdd = () => {
-  const { setTareas, isOpen, setIsOpen } = useTask()
+  const { setIsOpen } = useTask()
 
   const handleClickOpen = () => {
     setIsOpen(true)

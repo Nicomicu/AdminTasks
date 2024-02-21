@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const TareaSchema = mongoose.Schema(
+const tareaSchema = mongoose.Schema(
   {
     nombre: {
       type: String,
@@ -13,12 +13,7 @@ const TareaSchema = mongoose.Schema(
       trim: true,
       enum: ["Pendiente", "En proceso", "Hecho"],
     },
-    // prioridades: {
-    //   type: String,
-    //   required: true,
-    //   trim: true,
-    //   enum: ["Baja", "Media", "Alta"],
-    // },
+
     fecha: {
       type: Date,
       required: true,
@@ -34,5 +29,5 @@ const TareaSchema = mongoose.Schema(
     timestamps: true,
   }
 )
-const Tarea = mongoose.model("Tarea", TareaSchema)
+const Tarea = mongoose.model("Tarea", tareaSchema)
 export default Tarea

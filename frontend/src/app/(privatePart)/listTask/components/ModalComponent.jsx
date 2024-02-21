@@ -4,6 +4,7 @@ import { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import FormComponent from "./FormComponent"
 import useTask from "../hook/useTask"
+
 const ModalComponent = () => {
   const { setIsOpen, isOpen, handleClose } = useTask()
 
@@ -26,7 +27,6 @@ const ModalComponent = () => {
               <Dialog.Overlay className="fixed inset-0 bg-gray-200 bg-opacity-50 transition-opacity" />
             </Transition.Child>
 
-            {/* Este elemento es para engañar al navegador y centrar el contenido del modal. */}
             <span
               className="hidden sm:inline-block sm:align-middle sm:h-screen"
               aria-hidden="true">

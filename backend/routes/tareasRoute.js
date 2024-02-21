@@ -1,17 +1,16 @@
 import express from "express"
 import {
-  newtask,
-  updateTask,
-  deletetask,
+  newTask,
+  getTask,
+  ediTask,
+  deleteTask,
   getAltTask,
-  gettask,
 } from "../controllers/tareasControllers.js"
 import auth from "../middleware/auth.js"
 
 const router = express.Router()
 
-router.route("/").get(auth, getAltTask).post(auth, newtask)
-router.route("/:id").get(gettask).put(updateTask).delete(deletetask)
-// router.route("/").get(gettask)
+router.route("/").get(auth, getAltTask).post(auth, newTask)
+router.route("/:id").get(getTask).put(ediTask).delete(deleteTask)
 
 export default router

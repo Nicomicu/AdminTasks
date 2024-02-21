@@ -16,7 +16,7 @@ const auth = async (req, res, next) => {
         "-password -confirmado -token -createdAt -updatedAt -__v"
       )
 
-      next()
+      return next()
     } catch (error) {
       return res.status(401).json({ msg: "Hubo un error" })
     }
@@ -26,6 +26,7 @@ const auth = async (req, res, next) => {
     const error = new Error("No es Valido")
     return res.status(401).json({ msg: error.message })
   }
+  next()
 }
 
 export default auth

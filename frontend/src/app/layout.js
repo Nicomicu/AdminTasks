@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { AuthProvider } from "@/context/AuthProvider"
 import { TaskProvider } from "./(privatePart)/listTask/context/taskProvider"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {

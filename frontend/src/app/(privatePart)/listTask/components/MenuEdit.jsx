@@ -1,33 +1,24 @@
-import React, { Fragment } from "react"
+"use client"
+
+import React, { Fragment, useState } from "react"
 import { Menu, Transition } from "@headlessui/react"
 import { GoKebabHorizontal } from "react-icons/go"
 import MenuDelete from "../components/MenuDelete"
 import useTask from "../hook/useTask"
-import { toast } from "react-toastify"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-export default function MenuEdit({ tarea, id }) {
-  const { setTarea, setIsOpen, setIsMenuOpen } = useTask()
+export default function MenuEdit({ id, tarea }) {
+  const { setIsOpen, isOpen, handleActualizar, setIsMenuOpen } = useTask()
 
-  const updateTask = async () => {
-    setTarea(tarea)
-    setIsOpen(true)
-  }
-  // const editTask = async (tarea) => {
-  //   try {
-  //     console.log(tarea)
-  //     const data = await editRequest(tarea, id)
+  // if (Array.isArray(tarea)) {
+  //   console.log("Es un arreglo")
+  // } else {
+  //   console.log("No es un arreglo")
+  // }
 
-  //     const tareasActualizadas = tareas.map((tareaState) =>
-  //       tareaState._id === data._id ? data : tareaState
-  //     )
-  //     setTareas(tareasActualizadas)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
   // }
 
   return (
@@ -59,7 +50,9 @@ export default function MenuEdit({ tarea, id }) {
               {({ active }) => (
                 <>
                   <button
-                    onClick={() => updateTask(tarea)}
+                    onClick={() => {
+                      handleActualizar(tarea)
+                    }}
                     className={classNames(
                       active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                       "block px-4 py-2 text-sm w-full text-left"

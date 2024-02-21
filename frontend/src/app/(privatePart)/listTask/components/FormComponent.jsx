@@ -3,10 +3,8 @@
 import { useState, useEffect } from "react"
 import { Dialog } from "@headlessui/react"
 import useTask from "../hook/useTask"
-import { useParams } from "next/navigation"
 import { toast } from "react-toastify"
 import Error from "@/components/Error"
-import newTaskRequest from "../services/newTaskRequest"
 import TaskRadio from "./TaskRadio"
 
 const FormComponent = () => {
@@ -16,11 +14,7 @@ const FormComponent = () => {
   const [descripcion, setDescripcion] = useState("")
   const [id, setId] = useState("")
 
-  const { alerta, tarea, tareas, setTareas, submitTarea } = useTask()
-
-  // const { setIsOpen, handleClose } = useModal
-
-  const params = useParams()
+  const { alerta, tarea, submitTarea, setIsOpen } = useTask()
 
   useEffect(() => {
     if (tarea?._id) {
@@ -49,13 +43,6 @@ const FormComponent = () => {
       return
     }
 
-    // const { data } = await newTaskRequest({
-    //   nombre,
-    //   columns,
-    //   fecha,
-    //   descripcion,
-    //   id,
-    // })
     await submitTarea({
       id,
       nombre,
@@ -63,7 +50,7 @@ const FormComponent = () => {
       fecha,
       descripcion,
     })
-    // setTareas([...tareas, data])
+    setIsOpen(false)
 
     setId("")
     setNombre("")
@@ -91,9 +78,7 @@ const FormComponent = () => {
 
         <input
           value={nombre}
-          onChange={(e) => {
-            setNombre(e.target.value)
-          }}
+          onChange={(e) => setNombre(e.target.value)}
           type="text"
           placeholder="Nombre de la tarea"
           className="border border-gray-400 outline-none w-full bg-white p-4 rounded-lg text-gray-500 mt-2"
